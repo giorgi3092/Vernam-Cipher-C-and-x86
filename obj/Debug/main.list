@@ -1,0 +1,2704 @@
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 1
+
+
+   1              		.file	"main.c"
+   2              		.text
+   3              	Ltext0:
+   4              		.cfi_sections	.debug_frame
+   6              	_printf:
+   7              	LFB1:
+   8              		.file 1 "C:/Program Files (x86)/CodeBlocks/MinGW/include/stdio.h"
+   1:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+   2:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * stdio.h
+   3:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * This file has no copyright assigned and is placed in the Public Domain.
+   4:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * This file is a part of the mingw-runtime package.
+   5:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * No warranty is given; refer to the file DISCLAIMER within the package.
+   6:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  *
+   7:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * Definitions of types and prototypes of functions for standard input and
+   8:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * output.
+   9:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  *
+  10:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * NOTE: The file manipulation functions provided by Microsoft seem to
+  11:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * work with either slash (/) or backslash (\) as the directory separator.
+  12:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  *
+  13:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+  14:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+  15:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #ifndef _STDIO_H_
+  16:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define	_STDIO_H_
+  17:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+  18:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /* All the headers include this file. */
+  19:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #include <_mingw.h>
+  20:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+  21:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #ifndef RC_INVOKED
+  22:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define __need_size_t
+  23:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define __need_NULL
+  24:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define __need_wchar_t
+  25:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define	__need_wint_t
+  26:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #include <stddef.h>
+  27:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define __need___va_list
+  28:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #include <stdarg.h>
+  29:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #endif	/* Not RC_INVOKED */
+  30:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+  31:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+  32:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /* Flags for the iobuf structure  */
+  33:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define	_IOREAD	1 /* currently reading */
+  34:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define	_IOWRT	2 /* currently writing */
+  35:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define	_IORW	0x0080 /* opened as "r+w" */
+  36:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+  37:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+  38:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+  39:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * The three standard file pointers provided by the run time library.
+  40:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * NOTE: These will go to the bit-bucket silently in GUI applications!
+  41:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+  42:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define	STDIN_FILENO	0
+  43:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define	STDOUT_FILENO	1
+  44:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define	STDERR_FILENO	2
+  45:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+  46:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /* Returned by various functions on end of file condition or error. */
+  47:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define	EOF	(-1)
+  48:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+  49:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+  50:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * The maximum length of a file name. You should use GetVolumeInformation
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 2
+
+
+  51:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * instead of this constant. But hey, this works.
+  52:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * Also defined in io.h.
+  53:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+  54:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #ifndef FILENAME_MAX
+  55:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define	FILENAME_MAX	(260)
+  56:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #endif
+  57:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+  58:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+  59:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * The maximum number of files that may be open at once. I have set this to
+  60:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * a conservative number. The actual value may be higher.
+  61:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+  62:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define FOPEN_MAX	(20)
+  63:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+  64:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /* After creating this many names, tmpnam and tmpfile return NULL */
+  65:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define TMP_MAX	32767
+  66:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+  67:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * Tmpnam, tmpfile and, sometimes, _tempnam try to create
+  68:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * temp files in the root directory of the current drive
+  69:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * (not in pwd, as suggested by some older MS doc's).
+  70:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * Redefining these macros does not effect the CRT functions.
+  71:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+  72:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define _P_tmpdir   "\\"
+  73:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #ifndef __STRICT_ANSI__
+  74:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define P_tmpdir _P_tmpdir
+  75:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #endif
+  76:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define _wP_tmpdir  L"\\"
+  77:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+  78:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+  79:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * The maximum size of name (including NUL) that will be put in the user
+  80:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * supplied buffer caName for tmpnam.
+  81:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * Inferred from the size of the static buffer returned by tmpnam
+  82:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * when passed a NULL argument. May actually be smaller.
+  83:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+  84:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define L_tmpnam (16)
+  85:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+  86:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define _IOFBF    0x0000  /* full buffered */
+  87:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define _IOLBF    0x0040  /* line buffered */
+  88:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define _IONBF    0x0004  /* not buffered */
+  89:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+  90:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define _IOMYBUF  0x0008  /* stdio malloc()'d buffer */
+  91:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define _IOEOF    0x0010  /* EOF reached on read */
+  92:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define _IOERR    0x0020  /* I/O error from system */
+  93:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define _IOSTRG   0x0040  /* Strange or no file descriptor */
+  94:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #ifdef _POSIX_SOURCE
+  95:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** # define _IOAPPEND 0x0200
+  96:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #endif
+  97:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+  98:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * The buffer size as used by setbuf such that it is equivalent to
+  99:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * (void) setvbuf(fileSetBuffer, caBuffer, _IOFBF, BUFSIZ).
+ 100:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+ 101:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define	BUFSIZ	512
+ 102:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 103:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /* Constants for nOrigin indicating the position relative to which fseek
+ 104:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * sets the file position.  Defined unconditionally since ISO and POSIX
+ 105:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * say they are defined here.  */
+ 106:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define SEEK_SET 0
+ 107:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define SEEK_CUR 1
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 3
+
+
+ 108:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define SEEK_END 2
+ 109:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 110:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #ifndef	RC_INVOKED
+ 111:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 112:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #ifndef __VALIST
+ 113:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #ifdef __GNUC__
+ 114:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define __VALIST __gnuc_va_list
+ 115:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #else
+ 116:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define __VALIST char*
+ 117:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #endif
+ 118:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #endif /* defined __VALIST  */
+ 119:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 120:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+ 121:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * The structure underlying the FILE type.
+ 122:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  *
+ 123:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * Some believe that nobody in their right mind should make use of the
+ 124:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * internals of this structure. Provided by Pedro A. Aranda Gutiirrez
+ 125:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * <paag@tid.es>.
+ 126:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+ 127:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #ifndef _FILE_DEFINED
+ 128:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define	_FILE_DEFINED
+ 129:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** typedef struct _iobuf
+ 130:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** {
+ 131:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 	char*	_ptr;
+ 132:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 	int	_cnt;
+ 133:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 	char*	_base;
+ 134:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 	int	_flag;
+ 135:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 	int	_file;
+ 136:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 	int	_charbuf;
+ 137:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 	int	_bufsiz;
+ 138:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 	char*	_tmpfname;
+ 139:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** } FILE;
+ 140:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #endif	/* Not _FILE_DEFINED */
+ 141:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 142:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 143:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+ 144:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * The standard file handles
+ 145:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+ 146:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #ifndef __DECLSPEC_SUPPORTED
+ 147:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 148:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** extern FILE (*_imp___iob)[];	/* A pointer to an array of FILE */
+ 149:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 150:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define _iob	(*_imp___iob)	/* An array of FILE */
+ 151:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 152:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #else /* __DECLSPEC_SUPPORTED */
+ 153:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 154:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** __MINGW_IMPORT FILE _iob[];	/* An array of FILE imported from DLL. */
+ 155:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 156:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #endif /* __DECLSPEC_SUPPORTED */
+ 157:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 158:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define stdin	(&_iob[STDIN_FILENO])
+ 159:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define stdout	(&_iob[STDOUT_FILENO])
+ 160:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define stderr	(&_iob[STDERR_FILENO])
+ 161:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 162:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #ifdef __cplusplus
+ 163:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** extern "C" {
+ 164:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #endif
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 4
+
+
+ 165:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 166:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+ 167:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * File Operations
+ 168:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+ 169:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP FILE* __cdecl __MINGW_NOTHROW fopen (const char*, const char*);
+ 170:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP FILE* __cdecl __MINGW_NOTHROW	freopen (const char*, const char*, FILE*);
+ 171:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP int __cdecl __MINGW_NOTHROW	fflush (FILE*);
+ 172:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP int __cdecl __MINGW_NOTHROW	fclose (FILE*);
+ 173:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /* MS puts remove & rename (but not wide versions) in io.h  also */
+ 174:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP int __cdecl __MINGW_NOTHROW	remove (const char*);
+ 175:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP int __cdecl __MINGW_NOTHROW	rename (const char*, const char*);
+ 176:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP FILE* __cdecl __MINGW_NOTHROW	tmpfile (void);
+ 177:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP char* __cdecl __MINGW_NOTHROW	tmpnam (char*);
+ 178:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 179:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #ifndef __STRICT_ANSI__
+ 180:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP char* __cdecl __MINGW_NOTHROW	_tempnam (const char*, const char*);
+ 181:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP int __cdecl __MINGW_NOTHROW	_rmtmp(void);
+ 182:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP int __cdecl __MINGW_NOTHROW	_unlink (const char*);
+ 183:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 184:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #ifndef	NO_OLDNAMES
+ 185:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP char* __cdecl __MINGW_NOTHROW	tempnam (const char*, const char*);
+ 186:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP int __cdecl __MINGW_NOTHROW	rmtmp(void);
+ 187:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP int __cdecl __MINGW_NOTHROW	unlink (const char*);
+ 188:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #endif
+ 189:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #endif /* __STRICT_ANSI__ */
+ 190:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 191:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP int __cdecl __MINGW_NOTHROW	setvbuf (FILE*, char*, int, size_t);
+ 192:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 193:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** _CRTIMP void __cdecl __MINGW_NOTHROW	setbuf (FILE*, char*);
+ 194:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 195:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+ 196:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * Formatted Output
+ 197:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  *
+ 198:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * MSVCRT implementations are not ANSI C99 conformant...
+ 199:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * we offer these conforming alternatives from libmingwex.a
+ 200:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+ 201:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #undef  __mingw_stdio_redirect__
+ 202:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #define __mingw_stdio_redirect__(F) __cdecl __MINGW_NOTHROW __mingw_##F
+ 203:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 204:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** extern int __mingw_stdio_redirect__(fprintf)(FILE*, const char*, ...);
+ 205:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** extern int __mingw_stdio_redirect__(printf)(const char*, ...);
+ 206:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** extern int __mingw_stdio_redirect__(sprintf)(char*, const char*, ...);
+ 207:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** extern int __mingw_stdio_redirect__(snprintf)(char*, size_t, const char*, ...);
+ 208:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** extern int __mingw_stdio_redirect__(vfprintf)(FILE*, const char*, __VALIST);
+ 209:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** extern int __mingw_stdio_redirect__(vprintf)(const char*, __VALIST);
+ 210:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** extern int __mingw_stdio_redirect__(vsprintf)(char*, const char*, __VALIST);
+ 211:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** extern int __mingw_stdio_redirect__(vsnprintf)(char*, size_t, const char*, __VALIST);
+ 212:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 213:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #if __USE_MINGW_ANSI_STDIO
+ 214:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+ 215:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * User has expressed a preference for C99 conformance...
+ 216:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+ 217:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** # undef __mingw_stdio_redirect__
+ 218:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** # ifdef __cplusplus
+ 219:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+ 220:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * For C++ we use inline implementations, to avoid interference
+ 221:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * with namespace qualification, which may result from using #defines.
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 5
+
+
+ 222:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+ 223:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #  define __mingw_stdio_redirect__  inline __cdecl __MINGW_NOTHROW
+ 224:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 225:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** # elif defined __GNUC__
+ 226:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+ 227:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * FIXME: Is there any GCC version prerequisite here?
+ 228:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  *
+ 229:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * We also prefer inline implementations for C, when we can be confident
+ 230:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * that the GNU specific __inline__ mechanism is supported.
+ 231:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+ 232:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #  define __mingw_stdio_redirect__  static __inline__ __cdecl __MINGW_NOTHROW
+ 233:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 234:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** # else
+ 235:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** /*
+ 236:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  * Can't use inlines; fall back on module local static stubs.
+ 237:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****  */
+ 238:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** #  define __mingw_stdio_redirect__  static __cdecl __MINGW_NOTHROW
+ 239:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** # endif
+ 240:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 241:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** __mingw_stdio_redirect__
+ 242:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** int fprintf (FILE *__stream, const char *__format, ...)
+ 243:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** {
+ 244:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   register int __retval;
+ 245:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+ 246:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   __retval = __mingw_vfprintf( __stream, __format, __local_argv );
+ 247:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   __builtin_va_end( __local_argv );
+ 248:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   return __retval;
+ 249:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** }
+ 250:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 251:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** __mingw_stdio_redirect__
+ 252:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** int printf (const char *__format, ...)
+ 253:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** {
+   9              		.loc 1 253 0
+  10              		.cfi_startproc
+  11 0000 55       		pushl	%ebp
+  12              		.cfi_def_cfa_offset 8
+  13              		.cfi_offset 5, -8
+  14 0001 89E5     		movl	%esp, %ebp
+  15              		.cfi_def_cfa_register 5
+  16 0003 53       		pushl	%ebx
+  17 0004 83EC24   		subl	$36, %esp
+  18              		.cfi_offset 3, -12
+ 254:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   register int __retval;
+ 255:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  19              		.loc 1 255 0
+  20 0007 8D450C   		leal	12(%ebp), %eax
+  21 000a 8945F4   		movl	%eax, -12(%ebp)
+ 256:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   __retval = __mingw_vprintf( __format, __local_argv );
+  22              		.loc 1 256 0
+  23 000d 8B45F4   		movl	-12(%ebp), %eax
+  24 0010 89442404 		movl	%eax, 4(%esp)
+  25 0014 8B4508   		movl	8(%ebp), %eax
+  26 0017 890424   		movl	%eax, (%esp)
+  27 001a E8000000 		call	___mingw_vprintf
+  27      00
+  28 001f 89C3     		movl	%eax, %ebx
+ 257:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   __builtin_va_end( __local_argv );
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 6
+
+
+ 258:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   return __retval;
+  29              		.loc 1 258 0
+  30 0021 89D8     		movl	%ebx, %eax
+ 259:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** }
+  31              		.loc 1 259 0
+  32 0023 83C424   		addl	$36, %esp
+  33 0026 5B       		popl	%ebx
+  34              		.cfi_restore 3
+  35 0027 5D       		popl	%ebp
+  36              		.cfi_restore 5
+  37              		.cfi_def_cfa 4, 4
+  38 0028 C3       		ret
+  39              		.cfi_endproc
+  40              	LFE1:
+  42              	_sprintf:
+  43              	LFB2:
+ 260:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** 
+ 261:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** __mingw_stdio_redirect__
+ 262:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** int sprintf (char *__stream, const char *__format, ...)
+ 263:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** {
+  44              		.loc 1 263 0
+  45              		.cfi_startproc
+  46 0029 55       		pushl	%ebp
+  47              		.cfi_def_cfa_offset 8
+  48              		.cfi_offset 5, -8
+  49 002a 89E5     		movl	%esp, %ebp
+  50              		.cfi_def_cfa_register 5
+  51 002c 53       		pushl	%ebx
+  52 002d 83EC24   		subl	$36, %esp
+  53              		.cfi_offset 3, -12
+ 264:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   register int __retval;
+ 265:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );
+  54              		.loc 1 265 0
+  55 0030 8D4510   		leal	16(%ebp), %eax
+  56 0033 8945F4   		movl	%eax, -12(%ebp)
+ 266:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   __retval = __mingw_vsprintf( __stream, __format, __local_argv );
+  57              		.loc 1 266 0
+  58 0036 8B45F4   		movl	-12(%ebp), %eax
+  59 0039 89442408 		movl	%eax, 8(%esp)
+  60 003d 8B450C   		movl	12(%ebp), %eax
+  61 0040 89442404 		movl	%eax, 4(%esp)
+  62 0044 8B4508   		movl	8(%ebp), %eax
+  63 0047 890424   		movl	%eax, (%esp)
+  64 004a E8000000 		call	___mingw_vsprintf
+  64      00
+  65 004f 89C3     		movl	%eax, %ebx
+ 267:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   __builtin_va_end( __local_argv );
+ 268:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h ****   return __retval;
+  66              		.loc 1 268 0
+  67 0051 89D8     		movl	%ebx, %eax
+ 269:C:/Program Files (x86)/CodeBlocks/MinGW/include\stdio.h **** }
+  68              		.loc 1 269 0
+  69 0053 83C424   		addl	$36, %esp
+  70 0056 5B       		popl	%ebx
+  71              		.cfi_restore 3
+  72 0057 5D       		popl	%ebp
+  73              		.cfi_restore 5
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 7
+
+
+  74              		.cfi_def_cfa 4, 4
+  75 0058 C3       		ret
+  76              		.cfi_endproc
+  77              	LFE2:
+  79              		.section .rdata,"dr"
+  80              	LC0:
+  81 0000 456E7465 		.ascii "Enter a message to encrypt: \0"
+  81      72206120 
+  81      6D657373 
+  81      61676520 
+  81      746F2065 
+  82              	LC1:
+  83 001d 4D657373 		.ascii "Message in binary: \0"
+  83      61676520 
+  83      696E2062 
+  83      696E6172 
+  83      793A2000 
+  84 0031 000000   		.align 4
+  85              	LC2:
+  86 0034 47656E65 		.ascii "Generating the key and cipher...\12\0"
+  86      72617469 
+  86      6E672074 
+  86      6865206B 
+  86      65792061 
+  87 0056 0000     		.align 4
+  88              	LC3:
+  89 0058 0A4C4653 		.ascii "\12LFSR sequence by C LFSR function: %s\12\0"
+  89      52207365 
+  89      7175656E 
+  89      63652062 
+  89      79204320 
+  90 007f 00       		.align 4
+  91              	LC4:
+  92 0080 4C465352 		.ascii "LFSR sequence by Assembly LFSR function: %s\12\12\0"
+  92      20736571 
+  92      75656E63 
+  92      65206279 
+  92      20417373 
+  93              	LC5:
+  94 00ae 31292047 		.ascii "1) Generated by C LFSR\12\12\0"
+  94      656E6572 
+  94      61746564 
+  94      20627920 
+  94      43204C46 
+  95              	LC6:
+  96 00c7 0A00     		.ascii "\12\0"
+  97 00c9 000000   		.align 4
+  98              	LC7:
+  99 00cc 32292047 		.ascii "2) Generated by Assembly LFSR\12\12\0"
+  99      656E6572 
+  99      61746564 
+  99      20627920 
+  99      41737365 
+ 100              		.text
+ 101              		.globl	_main
+ 103              	_main:
+ 104              	LFB10:
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 8
+
+
+ 105              		.file 2 "D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/
+   1:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** /*
+   2:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     San Diego State University
+   3:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     Giorgi Aptsiauri / 820968337
+   4:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     Final Project for COMPE 271, Spring, 2018.
+   5:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+   6:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     Unbreakable Vernam Cipher using Galois LFSR.
+   7:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** */
+   8:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+   9:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** # include <stdint.h>
+  10:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** # include <stdio.h>
+  11:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** # include <string.h>
+  12:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** # include <time.h>
+  13:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** # include <stdlib.h>
+  14:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+  15:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** extern int sprintfkeys(char* keyPtr, unsigned int LFSR_STATE);   // simplifies galoislfsrina() func
+  16:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** extern int GaloisLFSRinC(unsigned int seedIN, unsigned int charCount, char key[]);
+  17:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** extern int galoislfsrina(unsigned int seedIN, unsigned int charCount, char key[]);
+  18:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** int Vernam(char key[], char message[], char cipher[]);
+  19:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** int reverseTimeValue (int num);
+  20:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** extern int reverseTimeValueA (int num);
+  21:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** void printBinary(char stringPtr[]);
+  22:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** void printCharAsBinary(char c);
+  23:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** void printStringAsBinary(char* s);
+  24:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+  25:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** int main(void) {
+ 106              		.loc 2 25 0
+ 107              		.cfi_startproc
+ 108 0059 55       		pushl	%ebp
+ 109              		.cfi_def_cfa_offset 8
+ 110              		.cfi_offset 5, -8
+ 111 005a 89E5     		movl	%esp, %ebp
+ 112              		.cfi_def_cfa_register 5
+ 113 005c 83E4F0   		andl	$-16, %esp
+ 114 005f 81EC8002 		subl	$640, %esp
+ 114      0000
+ 115              		.loc 2 25 0
+ 116 0065 E8000000 		call	___main
+ 116      00
+  26:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     unsigned int currentTime = 0, currentTimeA = 0;
+ 117              		.loc 2 26 0
+ 118 006a C784247C 		movl	$0, 636(%esp)
+ 118      02000000 
+ 118      000000
+ 119 0075 C7842478 		movl	$0, 632(%esp)
+ 119      02000000 
+ 119      000000
+  27:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     unsigned int stringLen = 0;
+ 120              		.loc 2 27 0
+ 121 0080 C7842474 		movl	$0, 628(%esp)
+ 121      02000000 
+ 121      000000
+ 122              	L11:
+  28:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     char key[202];     // key generated from C code goes here
+  29:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     char keyA[202];    // key generated from Assembly code goes here
+  30:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     char cipher[101];  // cipher text is written here
+  31:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     char message[101]; // message to be encrypted
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 9
+
+
+  32:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+  33:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     while(1)
+  34:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     {
+  35:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         currentTime = (int)time(NULL) >> 1;  // just to make sure it fits within int
+ 123              		.loc 2 35 0
+ 124 008b C7042400 		movl	$0, (%esp)
+ 124      000000
+ 125 0092 E8000000 		call	_time
+ 125      00
+ 126 0097 D1F8     		sarl	%eax
+ 127 0099 8984247C 		movl	%eax, 636(%esp)
+ 127      020000
+  36:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         currentTimeA = (int)time(NULL) >> 1; // just to make sure it fits within int
+ 128              		.loc 2 36 0
+ 129 00a0 C7042400 		movl	$0, (%esp)
+ 129      000000
+ 130 00a7 E8000000 		call	_time
+ 130      00
+ 131 00ac D1F8     		sarl	%eax
+ 132 00ae 89842478 		movl	%eax, 632(%esp)
+ 132      020000
+  37:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+  38:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         /* currentTime value has to be reversed to accommodate "a more pseudorandom" sequence from 
+  39:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****            The reason is that time(NULL) returns time in seconds, where the most frequently updated
+  40:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****            the least significant bit(LSB). Since the taps into the LFSR are most significant bits (
+  41:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****            consider currentTime's LSB into key generation and the same sequence of pseudorandom val
+  42:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****            for a long time which is not the objective of my program. By reversing, this problem is 
+  43:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****            application.*/
+  44:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         currentTime = reverseTimeValue(currentTime);
+ 133              		.loc 2 44 0
+ 134 00b5 8B84247C 		movl	636(%esp), %eax
+ 134      020000
+ 135 00bc 890424   		movl	%eax, (%esp)
+ 136 00bf E8640400 		call	_reverseTimeValue
+ 136      00
+ 137 00c4 8984247C 		movl	%eax, 636(%esp)
+ 137      020000
+  45:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         currentTimeA = reverseTimeValueA(currentTimeA);
+ 138              		.loc 2 45 0
+ 139 00cb 8B842478 		movl	632(%esp), %eax
+ 139      020000
+ 140 00d2 890424   		movl	%eax, (%esp)
+ 141 00d5 E8000000 		call	_reverseTimeValueA
+ 141      00
+ 142 00da 89842478 		movl	%eax, 632(%esp)
+ 142      020000
+ 143              	L6:
+  46:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+  47:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         // get input
+  48:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         do{
+  49:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****             printf("Enter a message to encrypt: ");
+ 144              		.loc 2 49 0 discriminator 1
+ 145 00e1 C7042400 		movl	$LC0, (%esp)
+ 145      000000
+ 146 00e8 E813FFFF 		call	_printf
+ 146      FF
+  50:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****             fgets(message, 100, stdin);
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 10
+
+
+ 147              		.loc 2 50 0 discriminator 1
+ 148 00ed A1000000 		movl	__imp___iob, %eax
+ 148      00
+ 149 00f2 89442408 		movl	%eax, 8(%esp)
+ 150 00f6 C7442404 		movl	$100, 4(%esp)
+ 150      64000000 
+ 151 00fe 8D442416 		leal	22(%esp), %eax
+ 152 0102 890424   		movl	%eax, (%esp)
+ 153 0105 E8000000 		call	_fgets
+ 153      00
+  51:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****             stringLen = strlen(message)-1;
+ 154              		.loc 2 51 0 discriminator 1
+ 155 010a 8D442416 		leal	22(%esp), %eax
+ 156 010e 890424   		movl	%eax, (%esp)
+ 157 0111 E8000000 		call	_strlen
+ 157      00
+ 158 0116 83E801   		subl	$1, %eax
+ 159 0119 89842474 		movl	%eax, 628(%esp)
+ 159      020000
+  52:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****             message[stringLen] = '\0';
+ 160              		.loc 2 52 0 discriminator 1
+ 161 0120 8D542416 		leal	22(%esp), %edx
+ 162 0124 8B842474 		movl	628(%esp), %eax
+ 162      020000
+ 163 012b 01D0     		addl	%edx, %eax
+ 164 012d C60000   		movb	$0, (%eax)
+  53:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         } while (stringLen > 100);
+ 165              		.loc 2 53 0 discriminator 1
+ 166 0130 83BC2474 		cmpl	$100, 628(%esp)
+ 166      02000064 
+ 167 0138 77A7     		ja	L6
+  54:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+  55:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         printf("Message in binary: ");
+ 168              		.loc 2 55 0
+ 169 013a C704241D 		movl	$LC1, (%esp)
+ 169      000000
+ 170 0141 E8BAFEFF 		call	_printf
+ 170      FF
+  56:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         printStringAsBinary(message);
+ 171              		.loc 2 56 0
+ 172 0146 8D442416 		leal	22(%esp), %eax
+ 173 014a 890424   		movl	%eax, (%esp)
+ 174 014d E8E60400 		call	_printStringAsBinary
+ 174      00
+  57:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+  58:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         printf("Generating the key and cipher...\n");
+ 175              		.loc 2 58 0
+ 176 0152 C7042434 		movl	$LC2, (%esp)
+ 176      000000
+ 177 0159 E8A2FEFF 		call	_printf
+ 177      FF
+  59:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         if(GaloisLFSRinC(currentTime, stringLen, &key[0]) != 1)
+ 178              		.loc 2 59 0
+ 179 015e 8D8424AA 		leal	426(%esp), %eax
+ 179      010000
+ 180 0165 89442408 		movl	%eax, 8(%esp)
+ 181 0169 8B842474 		movl	628(%esp), %eax
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 11
+
+
+ 181      020000
+ 182 0170 89442404 		movl	%eax, 4(%esp)
+ 183 0174 8B84247C 		movl	636(%esp), %eax
+ 183      020000
+ 184 017b 890424   		movl	%eax, (%esp)
+ 185 017e E8000000 		call	_GaloisLFSRinC
+ 185      00
+ 186 0183 83F801   		cmpl	$1, %eax
+ 187 0186 740C     		je	L7
+  60:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****             exit(0);
+ 188              		.loc 2 60 0
+ 189 0188 C7042400 		movl	$0, (%esp)
+ 189      000000
+ 190 018f E8000000 		call	_exit
+ 190      00
+ 191              	L7:
+  61:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         printf("\nLFSR sequence by C LFSR function: %s\n", key);
+ 192              		.loc 2 61 0
+ 193 0194 8D8424AA 		leal	426(%esp), %eax
+ 193      010000
+ 194 019b 89442404 		movl	%eax, 4(%esp)
+ 195 019f C7042458 		movl	$LC3, (%esp)
+ 195      000000
+ 196 01a6 E855FEFF 		call	_printf
+ 196      FF
+  62:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+  63:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         if(galoislfsrina(currentTimeA, stringLen, &keyA[0]) != 1)
+ 197              		.loc 2 63 0
+ 198 01ab 8D8424E0 		leal	224(%esp), %eax
+ 198      000000
+ 199 01b2 89442408 		movl	%eax, 8(%esp)
+ 200 01b6 8B842474 		movl	628(%esp), %eax
+ 200      020000
+ 201 01bd 89442404 		movl	%eax, 4(%esp)
+ 202 01c1 8B842478 		movl	632(%esp), %eax
+ 202      020000
+ 203 01c8 890424   		movl	%eax, (%esp)
+ 204 01cb E8000000 		call	_galoislfsrina
+ 204      00
+ 205 01d0 83F801   		cmpl	$1, %eax
+ 206 01d3 740C     		je	L8
+  64:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****             exit(0);
+ 207              		.loc 2 64 0
+ 208 01d5 C7042400 		movl	$0, (%esp)
+ 208      000000
+ 209 01dc E8000000 		call	_exit
+ 209      00
+ 210              	L8:
+  65:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         printf("LFSR sequence by Assembly LFSR function: %s\n\n", keyA);
+ 211              		.loc 2 65 0
+ 212 01e1 8D8424E0 		leal	224(%esp), %eax
+ 212      000000
+ 213 01e8 89442404 		movl	%eax, 4(%esp)
+ 214 01ec C7042480 		movl	$LC4, (%esp)
+ 214      000000
+ 215 01f3 E808FEFF 		call	_printf
+ 215      FF
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 12
+
+
+  66:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+  67:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         printf("1) Generated by C LFSR\n\n");
+ 216              		.loc 2 67 0
+ 217 01f8 C70424AE 		movl	$LC5, (%esp)
+ 217      000000
+ 218 01ff E8FCFDFF 		call	_printf
+ 218      FF
+  68:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         if(Vernam(&key[0], &message[0], &cipher[0]) != 1)
+ 219              		.loc 2 68 0
+ 220 0204 8D44247B 		leal	123(%esp), %eax
+ 221 0208 89442408 		movl	%eax, 8(%esp)
+ 222 020c 8D442416 		leal	22(%esp), %eax
+ 223 0210 89442404 		movl	%eax, 4(%esp)
+ 224 0214 8D8424AA 		leal	426(%esp), %eax
+ 224      010000
+ 225 021b 890424   		movl	%eax, (%esp)
+ 226 021e E86A0000 		call	_Vernam
+ 226      00
+ 227 0223 83F801   		cmpl	$1, %eax
+ 228 0226 740C     		je	L9
+  69:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****             exit(0);
+ 229              		.loc 2 69 0
+ 230 0228 C7042400 		movl	$0, (%esp)
+ 230      000000
+ 231 022f E8000000 		call	_exit
+ 231      00
+ 232              	L9:
+  70:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         printf("\n");
+ 233              		.loc 2 70 0
+ 234 0234 C70424C7 		movl	$LC6, (%esp)
+ 234      000000
+ 235 023b E8C0FDFF 		call	_printf
+ 235      FF
+  71:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+  72:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         printf("2) Generated by Assembly LFSR\n\n");
+ 236              		.loc 2 72 0
+ 237 0240 C70424CC 		movl	$LC7, (%esp)
+ 237      000000
+ 238 0247 E8B4FDFF 		call	_printf
+ 238      FF
+  73:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         if(Vernam(&keyA[0], &message[0], &cipher[0]) != 1)
+ 239              		.loc 2 73 0
+ 240 024c 8D44247B 		leal	123(%esp), %eax
+ 241 0250 89442408 		movl	%eax, 8(%esp)
+ 242 0254 8D442416 		leal	22(%esp), %eax
+ 243 0258 89442404 		movl	%eax, 4(%esp)
+ 244 025c 8D8424E0 		leal	224(%esp), %eax
+ 244      000000
+ 245 0263 890424   		movl	%eax, (%esp)
+ 246 0266 E8220000 		call	_Vernam
+ 246      00
+ 247 026b 83F801   		cmpl	$1, %eax
+ 248 026e 740C     		je	L10
+  74:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****             exit(0);
+ 249              		.loc 2 74 0
+ 250 0270 C7042400 		movl	$0, (%esp)
+ 250      000000
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 13
+
+
+ 251 0277 E8000000 		call	_exit
+ 251      00
+ 252              	L10:
+  75:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         printf("\n");
+ 253              		.loc 2 75 0
+ 254 027c C70424C7 		movl	$LC6, (%esp)
+ 254      000000
+ 255 0283 E878FDFF 		call	_printf
+ 255      FF
+  76:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     }
+ 256              		.loc 2 76 0
+ 257 0288 E9FEFDFF 		jmp	L11
+ 257      FF
+ 258              		.cfi_endproc
+ 259              	LFE10:
+ 260              		.section .rdata,"dr"
+ 261              	LC8:
+ 262 00ec 6B657920 		.ascii "key in ASCII: %s\12\0"
+ 262      696E2041 
+ 262      53434949 
+ 262      3A202573 
+ 262      0A00
+ 263              	LC9:
+ 264 00fe 6B657920 		.ascii "key in binary: \0"
+ 264      696E2062 
+ 264      696E6172 
+ 264      793A2000 
+ 265              	LC10:
+ 266 010e 0A636970 		.ascii "\12cipher text: %s\12\0"
+ 266      68657220 
+ 266      74657874 
+ 266      3A202573 
+ 266      0A00
+ 267              	LC11:
+ 268 0120 63697068 		.ascii "cipher text in binary: \0"
+ 268      65722074 
+ 268      65787420 
+ 268      696E2062 
+ 268      696E6172 
+ 269              		.align 4
+ 270              	LC12:
+ 271 0138 4E6F7720 		.ascii "Now let's decrypt the cipher text...\12\0"
+ 271      6C657427 
+ 271      73206465 
+ 271      63727970 
+ 271      74207468 
+ 272              	LC13:
+ 273 015e 44656372 		.ascii "Decrypted message: %s\12\0"
+ 273      79707465 
+ 273      64206D65 
+ 273      73736167 
+ 273      653A2025 
+ 274              		.text
+ 275              		.globl	_Vernam
+ 277              	_Vernam:
+ 278              	LFB11:
+  77:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 14
+
+
+  78:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     return 0;
+  79:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** }
+  80:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+  81:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** int Vernam(char key[], char message[], char cipher[])
+  82:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** {
+ 279              		.loc 2 82 0
+ 280              		.cfi_startproc
+ 281 028d 55       		pushl	%ebp
+ 282              		.cfi_def_cfa_offset 8
+ 283              		.cfi_offset 5, -8
+ 284 028e 89E5     		movl	%esp, %ebp
+ 285              		.cfi_def_cfa_register 5
+ 286 0290 53       		pushl	%ebx
+ 287 0291 83EC44   		subl	$68, %esp
+ 288              		.cfi_offset 3, -12
+ 289 0294 89E0     		movl	%esp, %eax
+ 290 0296 89C3     		movl	%eax, %ebx
+  83:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     char bufferMessageByte[2]; // one byte for symbol, one for \0
+  84:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     char bufferKeyByte[3]; // two bytes for symbol, one for \0
+  85:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     char keyGenerated[strlen(message)+1];
+ 291              		.loc 2 85 0
+ 292 0298 8B450C   		movl	12(%ebp), %eax
+ 293 029b 890424   		movl	%eax, (%esp)
+ 294 029e E8000000 		call	_strlen
+ 294      00
+ 295 02a3 83C001   		addl	$1, %eax
+ 296 02a6 89C2     		movl	%eax, %edx
+ 297 02a8 83EA01   		subl	$1, %edx
+ 298 02ab 8955E8   		movl	%edx, -24(%ebp)
+ 299 02ae BA100000 		movl	$16, %edx
+ 299      00
+ 300 02b3 83EA01   		subl	$1, %edx
+ 301 02b6 01D0     		addl	%edx, %eax
+ 302 02b8 B9100000 		movl	$16, %ecx
+ 302      00
+ 303 02bd BA000000 		movl	$0, %edx
+ 303      00
+ 304 02c2 F7F1     		divl	%ecx
+ 305 02c4 6BC010   		imull	$16, %eax, %eax
+ 306 02c7 E8000000 		call	___chkstk_ms
+ 306      00
+ 307 02cc 29C4     		subl	%eax, %esp
+ 308 02ce 8D44240C 		leal	12(%esp), %eax
+ 309 02d2 83C000   		addl	$0, %eax
+ 310 02d5 8945E4   		movl	%eax, -28(%ebp)
+  86:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     char cipherGenerated[strlen(message)+1];
+ 311              		.loc 2 86 0
+ 312 02d8 8B450C   		movl	12(%ebp), %eax
+ 313 02db 890424   		movl	%eax, (%esp)
+ 314 02de E8000000 		call	_strlen
+ 314      00
+ 315 02e3 83C001   		addl	$1, %eax
+ 316 02e6 89C2     		movl	%eax, %edx
+ 317 02e8 83EA01   		subl	$1, %edx
+ 318 02eb 8955E0   		movl	%edx, -32(%ebp)
+ 319 02ee BA100000 		movl	$16, %edx
+ 319      00
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 15
+
+
+ 320 02f3 83EA01   		subl	$1, %edx
+ 321 02f6 01D0     		addl	%edx, %eax
+ 322 02f8 B9100000 		movl	$16, %ecx
+ 322      00
+ 323 02fd BA000000 		movl	$0, %edx
+ 323      00
+ 324 0302 F7F1     		divl	%ecx
+ 325 0304 6BC010   		imull	$16, %eax, %eax
+ 326 0307 E8000000 		call	___chkstk_ms
+ 326      00
+ 327 030c 29C4     		subl	%eax, %esp
+ 328 030e 8D44240C 		leal	12(%esp), %eax
+ 329 0312 83C000   		addl	$0, %eax
+ 330 0315 8945DC   		movl	%eax, -36(%ebp)
+  87:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     char reconstructedMessage[strlen(message)+1];
+ 331              		.loc 2 87 0
+ 332 0318 8B450C   		movl	12(%ebp), %eax
+ 333 031b 890424   		movl	%eax, (%esp)
+ 334 031e E8000000 		call	_strlen
+ 334      00
+ 335 0323 83C001   		addl	$1, %eax
+ 336 0326 89C2     		movl	%eax, %edx
+ 337 0328 83EA01   		subl	$1, %edx
+ 338 032b 8955D8   		movl	%edx, -40(%ebp)
+ 339 032e BA100000 		movl	$16, %edx
+ 339      00
+ 340 0333 83EA01   		subl	$1, %edx
+ 341 0336 01D0     		addl	%edx, %eax
+ 342 0338 B9100000 		movl	$16, %ecx
+ 342      00
+ 343 033d BA000000 		movl	$0, %edx
+ 343      00
+ 344 0342 F7F1     		divl	%ecx
+ 345 0344 6BC010   		imull	$16, %eax, %eax
+ 346 0347 E8000000 		call	___chkstk_ms
+ 346      00
+ 347 034c 29C4     		subl	%eax, %esp
+ 348 034e 8D44240C 		leal	12(%esp), %eax
+ 349 0352 83C000   		addl	$0, %eax
+ 350 0355 8945D4   		movl	%eax, -44(%ebp)
+  88:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     char* messagePtr = &message[0];
+ 351              		.loc 2 88 0
+ 352 0358 8B450C   		movl	12(%ebp), %eax
+ 353 035b 8945F4   		movl	%eax, -12(%ebp)
+  89:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     char* keyPtr = &key[0];
+ 354              		.loc 2 89 0
+ 355 035e 8B4508   		movl	8(%ebp), %eax
+ 356 0361 8945F0   		movl	%eax, -16(%ebp)
+  90:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     int stingLen = strlen(messagePtr);
+ 357              		.loc 2 90 0
+ 358 0364 8B45F4   		movl	-12(%ebp), %eax
+ 359 0367 890424   		movl	%eax, (%esp)
+ 360 036a E8000000 		call	_strlen
+ 360      00
+ 361 036f 8945D0   		movl	%eax, -48(%ebp)
+  91:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     unsigned char keySymbolAscii;
+  92:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     unsigned char messageSymbolAscii;
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 16
+
+
+  93:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     unsigned char cipherByte;
+  94:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     int i;
+  95:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     for(i = 0; i < stingLen; i++)
+ 362              		.loc 2 95 0
+ 363 0372 C745EC00 		movl	$0, -20(%ebp)
+ 363      000000
+ 364 0379 E9B70000 		jmp	L13
+ 364      00
+ 365              	L14:
+  96:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     {
+  97:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         bufferMessageByte[0] = *messagePtr++;
+ 366              		.loc 2 97 0 discriminator 3
+ 367 037e 8B45F4   		movl	-12(%ebp), %eax
+ 368 0381 8D5001   		leal	1(%eax), %edx
+ 369 0384 8955F4   		movl	%edx, -12(%ebp)
+ 370 0387 0FB600   		movzbl	(%eax), %eax
+ 371 038a 8845CB   		movb	%al, -53(%ebp)
+  98:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         bufferMessageByte[1] = '\0';
+ 372              		.loc 2 98 0 discriminator 3
+ 373 038d C645CC00 		movb	$0, -52(%ebp)
+  99:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+ 100:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         bufferKeyByte[0] = *keyPtr++;
+ 374              		.loc 2 100 0 discriminator 3
+ 375 0391 8B45F0   		movl	-16(%ebp), %eax
+ 376 0394 8D5001   		leal	1(%eax), %edx
+ 377 0397 8955F0   		movl	%edx, -16(%ebp)
+ 378 039a 0FB600   		movzbl	(%eax), %eax
+ 379 039d 8845C8   		movb	%al, -56(%ebp)
+ 101:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         bufferKeyByte[1] = *keyPtr++;
+ 380              		.loc 2 101 0 discriminator 3
+ 381 03a0 8B45F0   		movl	-16(%ebp), %eax
+ 382 03a3 8D5001   		leal	1(%eax), %edx
+ 383 03a6 8955F0   		movl	%edx, -16(%ebp)
+ 384 03a9 0FB600   		movzbl	(%eax), %eax
+ 385 03ac 8845C9   		movb	%al, -55(%ebp)
+ 102:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         bufferKeyByte[2] = '\0';
+ 386              		.loc 2 102 0 discriminator 3
+ 387 03af C645CA00 		movb	$0, -54(%ebp)
+ 103:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+ 104:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         keySymbolAscii = (unsigned char)strtol(bufferKeyByte, NULL, 16);
+ 388              		.loc 2 104 0 discriminator 3
+ 389 03b3 C7442408 		movl	$16, 8(%esp)
+ 389      10000000 
+ 390 03bb C7442404 		movl	$0, 4(%esp)
+ 390      00000000 
+ 391 03c3 8D45C8   		leal	-56(%ebp), %eax
+ 392 03c6 890424   		movl	%eax, (%esp)
+ 393 03c9 E8000000 		call	_strtol
+ 393      00
+ 394 03ce 8845CF   		movb	%al, -49(%ebp)
+ 105:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         /* normalize key symbol to ASCII displayable symbols, i.e. decimal 33 - 126.
+ 106:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****            the next line can be commented to allow all values, decimal 0 - 255, to be used during e
+ 107:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****            Even though each byte of key is normalized, final cipher text will not be normalized.*/
+ 108:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+ 109:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         keySymbolAscii = 33 + (keySymbolAscii%93);
+ 395              		.loc 2 109 0 discriminator 3
+ 396 03d1 0FB655CF 		movzbl	-49(%ebp), %edx
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 17
+
+
+ 397 03d5 0FB6CA   		movzbl	%dl, %ecx
+ 398 03d8 89C8     		movl	%ecx, %eax
+ 399 03da 01C0     		addl	%eax, %eax
+ 400 03dc 01C8     		addl	%ecx, %eax
+ 401 03de C1E005   		sall	$5, %eax
+ 402 03e1 01C8     		addl	%ecx, %eax
+ 403 03e3 66C1E808 		shrw	$8, %ax
+ 404 03e7 89D1     		movl	%edx, %ecx
+ 405 03e9 29C1     		subl	%eax, %ecx
+ 406 03eb D0E9     		shrb	%cl
+ 407 03ed 01C8     		addl	%ecx, %eax
+ 408 03ef C0E806   		shrb	$6, %al
+ 409 03f2 B95D0000 		movl	$93, %ecx
+ 409      00
+ 410 03f7 0FAFC1   		imull	%ecx, %eax
+ 411 03fa 29C2     		subl	%eax, %edx
+ 412 03fc 89D0     		movl	%edx, %eax
+ 413 03fe 83C021   		addl	$33, %eax
+ 414 0401 8845CF   		movb	%al, -49(%ebp)
+ 110:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         keyGenerated[i] = (unsigned char)keySymbolAscii; // save to final key array
+ 415              		.loc 2 110 0 discriminator 3
+ 416 0404 0FB645CF 		movzbl	-49(%ebp), %eax
+ 417 0408 8B4DE4   		movl	-28(%ebp), %ecx
+ 418 040b 8B55EC   		movl	-20(%ebp), %edx
+ 419 040e 01CA     		addl	%ecx, %edx
+ 420 0410 8802     		movb	%al, (%edx)
+ 111:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         messageSymbolAscii = (unsigned char)bufferMessageByte[0];
+ 421              		.loc 2 111 0 discriminator 3
+ 422 0412 0FB645CB 		movzbl	-53(%ebp), %eax
+ 423 0416 8845CE   		movb	%al, -50(%ebp)
+ 112:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+ 113:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         // XORING
+ 114:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         cipherByte = keySymbolAscii ^ messageSymbolAscii;
+ 424              		.loc 2 114 0 discriminator 3
+ 425 0419 0FB645CF 		movzbl	-49(%ebp), %eax
+ 426 041d 3245CE   		xorb	-50(%ebp), %al
+ 427 0420 8845CD   		movb	%al, -51(%ebp)
+ 115:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         cipherGenerated[i] = (unsigned char)cipherByte; // save cipher text
+ 428              		.loc 2 115 0 discriminator 3
+ 429 0423 0FB645CD 		movzbl	-51(%ebp), %eax
+ 430 0427 8B4DDC   		movl	-36(%ebp), %ecx
+ 431 042a 8B55EC   		movl	-20(%ebp), %edx
+ 432 042d 01CA     		addl	%ecx, %edx
+ 433 042f 8802     		movb	%al, (%edx)
+  95:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     {
+ 434              		.loc 2 95 0 discriminator 3
+ 435 0431 8345EC01 		addl	$1, -20(%ebp)
+ 436              	L13:
+  95:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     {
+ 437              		.loc 2 95 0 is_stmt 0 discriminator 1
+ 438 0435 8B45EC   		movl	-20(%ebp), %eax
+ 439 0438 3B45D0   		cmpl	-48(%ebp), %eax
+ 440 043b 0F8C3DFF 		jl	L14
+ 440      FFFF
+ 116:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     }
+ 117:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+ 118:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     keyGenerated[i] = '\0';
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 18
+
+
+ 441              		.loc 2 118 0 is_stmt 1
+ 442 0441 8B55E4   		movl	-28(%ebp), %edx
+ 443 0444 8B45EC   		movl	-20(%ebp), %eax
+ 444 0447 01D0     		addl	%edx, %eax
+ 445 0449 C60000   		movb	$0, (%eax)
+ 119:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     cipherGenerated[i] = '\0';
+ 446              		.loc 2 119 0
+ 447 044c 8B55DC   		movl	-36(%ebp), %edx
+ 448 044f 8B45EC   		movl	-20(%ebp), %eax
+ 449 0452 01D0     		addl	%edx, %eax
+ 450 0454 C60000   		movb	$0, (%eax)
+ 120:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+ 121:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     printf("key in ASCII: %s\n", keyGenerated);
+ 451              		.loc 2 121 0
+ 452 0457 8B45E4   		movl	-28(%ebp), %eax
+ 453 045a 89442404 		movl	%eax, 4(%esp)
+ 454 045e C70424EC 		movl	$LC8, (%esp)
+ 454      000000
+ 455 0465 E896FBFF 		call	_printf
+ 455      FF
+ 122:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     printf("key in binary: ");
+ 456              		.loc 2 122 0
+ 457 046a C70424FE 		movl	$LC9, (%esp)
+ 457      000000
+ 458 0471 E88AFBFF 		call	_printf
+ 458      FF
+ 123:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     printStringAsBinary(keyGenerated);
+ 459              		.loc 2 123 0
+ 460 0476 8B45E4   		movl	-28(%ebp), %eax
+ 461 0479 890424   		movl	%eax, (%esp)
+ 462 047c E8B70100 		call	_printStringAsBinary
+ 462      00
+ 124:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     printf("\ncipher text: %s\n", cipherGenerated);
+ 463              		.loc 2 124 0
+ 464 0481 8B45DC   		movl	-36(%ebp), %eax
+ 465 0484 89442404 		movl	%eax, 4(%esp)
+ 466 0488 C704240E 		movl	$LC10, (%esp)
+ 466      010000
+ 467 048f E86CFBFF 		call	_printf
+ 467      FF
+ 125:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     printf("cipher text in binary: ");
+ 468              		.loc 2 125 0
+ 469 0494 C7042420 		movl	$LC11, (%esp)
+ 469      010000
+ 470 049b E860FBFF 		call	_printf
+ 470      FF
+ 126:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     printStringAsBinary(cipherGenerated);
+ 471              		.loc 2 126 0
+ 472 04a0 8B45DC   		movl	-36(%ebp), %eax
+ 473 04a3 890424   		movl	%eax, (%esp)
+ 474 04a6 E88D0100 		call	_printStringAsBinary
+ 474      00
+ 127:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+ 128:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     // Decryption
+ 129:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     printf("Now let's decrypt the cipher text...\n");
+ 475              		.loc 2 129 0
+ 476 04ab C7042438 		movl	$LC12, (%esp)
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 19
+
+
+ 476      010000
+ 477 04b2 E849FBFF 		call	_printf
+ 477      FF
+ 130:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     messagePtr = &message[0];
+ 478              		.loc 2 130 0
+ 479 04b7 8B450C   		movl	12(%ebp), %eax
+ 480 04ba 8945F4   		movl	%eax, -12(%ebp)
+ 131:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     keyPtr = &keyGenerated[0];
+ 481              		.loc 2 131 0
+ 482 04bd 8B45E4   		movl	-28(%ebp), %eax
+ 483 04c0 8945F0   		movl	%eax, -16(%ebp)
+ 132:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     for(i = 0; i < stingLen; i++)
+ 484              		.loc 2 132 0
+ 485 04c3 C745EC00 		movl	$0, -20(%ebp)
+ 485      000000
+ 486 04ca EB2A     		jmp	L15
+ 487              	L16:
+ 133:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     {
+ 134:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         reconstructedMessage[i] = ((unsigned char)keyPtr[i] ^ (unsigned char)cipherGenerated[i]);
+ 488              		.loc 2 134 0 discriminator 3
+ 489 04cc 8B55EC   		movl	-20(%ebp), %edx
+ 490 04cf 8B45F0   		movl	-16(%ebp), %eax
+ 491 04d2 01D0     		addl	%edx, %eax
+ 492 04d4 0FB600   		movzbl	(%eax), %eax
+ 493 04d7 89C1     		movl	%eax, %ecx
+ 494 04d9 8B55DC   		movl	-36(%ebp), %edx
+ 495 04dc 8B45EC   		movl	-20(%ebp), %eax
+ 496 04df 01D0     		addl	%edx, %eax
+ 497 04e1 0FB600   		movzbl	(%eax), %eax
+ 498 04e4 31C8     		xorl	%ecx, %eax
+ 499 04e6 89C1     		movl	%eax, %ecx
+ 500 04e8 8B55D4   		movl	-44(%ebp), %edx
+ 501 04eb 8B45EC   		movl	-20(%ebp), %eax
+ 502 04ee 01D0     		addl	%edx, %eax
+ 503 04f0 8808     		movb	%cl, (%eax)
+ 132:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     for(i = 0; i < stingLen; i++)
+ 504              		.loc 2 132 0 discriminator 3
+ 505 04f2 8345EC01 		addl	$1, -20(%ebp)
+ 506              	L15:
+ 132:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     for(i = 0; i < stingLen; i++)
+ 507              		.loc 2 132 0 is_stmt 0 discriminator 1
+ 508 04f6 8B45EC   		movl	-20(%ebp), %eax
+ 509 04f9 3B45D0   		cmpl	-48(%ebp), %eax
+ 510 04fc 7CCE     		jl	L16
+ 135:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     }
+ 136:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     reconstructedMessage[i] = '\0';
+ 511              		.loc 2 136 0 is_stmt 1
+ 512 04fe 8B55D4   		movl	-44(%ebp), %edx
+ 513 0501 8B45EC   		movl	-20(%ebp), %eax
+ 514 0504 01D0     		addl	%edx, %eax
+ 515 0506 C60000   		movb	$0, (%eax)
+ 137:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     printf("Decrypted message: %s\n", reconstructedMessage);
+ 516              		.loc 2 137 0
+ 517 0509 8B45D4   		movl	-44(%ebp), %eax
+ 518 050c 89442404 		movl	%eax, 4(%esp)
+ 519 0510 C704245E 		movl	$LC13, (%esp)
+ 519      010000
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 20
+
+
+ 520 0517 E8E4FAFF 		call	_printf
+ 520      FF
+ 138:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+ 139:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     return 1;
+ 521              		.loc 2 139 0
+ 522 051c B8010000 		movl	$1, %eax
+ 522      00
+ 523 0521 89DC     		movl	%ebx, %esp
+ 140:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** }
+ 524              		.loc 2 140 0
+ 525 0523 8B5DFC   		movl	-4(%ebp), %ebx
+ 526 0526 C9       		leave
+ 527              		.cfi_restore 5
+ 528              		.cfi_restore 3
+ 529              		.cfi_def_cfa 4, 4
+ 530 0527 C3       		ret
+ 531              		.cfi_endproc
+ 532              	LFE11:
+ 533              		.globl	_reverseTimeValue
+ 535              	_reverseTimeValue:
+ 536              	LFB12:
+ 141:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+ 142:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** int reverseTimeValue (int num)
+ 143:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** {
+ 537              		.loc 2 143 0
+ 538              		.cfi_startproc
+ 539 0528 55       		pushl	%ebp
+ 540              		.cfi_def_cfa_offset 8
+ 541              		.cfi_offset 5, -8
+ 542 0529 89E5     		movl	%esp, %ebp
+ 543              		.cfi_def_cfa_register 5
+ 544 052b 53       		pushl	%ebx
+ 545 052c 83EC10   		subl	$16, %esp
+ 546              		.cfi_offset 3, -12
+ 144:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     int reverseNum = 0;
+ 547              		.loc 2 144 0
+ 548 052f C745F800 		movl	$0, -8(%ebp)
+ 548      000000
+ 145:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     while(num > 0)
+ 549              		.loc 2 145 0
+ 550 0536 EB52     		jmp	L19
+ 551              	L20:
+ 146:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     {
+ 147:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         reverseNum = reverseNum*10 + num%10;
+ 552              		.loc 2 147 0
+ 553 0538 8B55F8   		movl	-8(%ebp), %edx
+ 554 053b 89D0     		movl	%edx, %eax
+ 555 053d C1E002   		sall	$2, %eax
+ 556 0540 01D0     		addl	%edx, %eax
+ 557 0542 01C0     		addl	%eax, %eax
+ 558 0544 89C3     		movl	%eax, %ebx
+ 559 0546 8B4D08   		movl	8(%ebp), %ecx
+ 560 0549 BA676666 		movl	$1717986919, %edx
+ 560      66
+ 561 054e 89C8     		movl	%ecx, %eax
+ 562 0550 F7EA     		imull	%edx
+ 563 0552 C1FA02   		sarl	$2, %edx
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 21
+
+
+ 564 0555 89C8     		movl	%ecx, %eax
+ 565 0557 C1F81F   		sarl	$31, %eax
+ 566 055a 29C2     		subl	%eax, %edx
+ 567 055c 89D0     		movl	%edx, %eax
+ 568 055e C1E002   		sall	$2, %eax
+ 569 0561 01D0     		addl	%edx, %eax
+ 570 0563 01C0     		addl	%eax, %eax
+ 571 0565 29C1     		subl	%eax, %ecx
+ 572 0567 89CA     		movl	%ecx, %edx
+ 573 0569 8D0413   		leal	(%ebx,%edx), %eax
+ 574 056c 8945F8   		movl	%eax, -8(%ebp)
+ 148:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         num = num/10;
+ 575              		.loc 2 148 0
+ 576 056f 8B4D08   		movl	8(%ebp), %ecx
+ 577 0572 BA676666 		movl	$1717986919, %edx
+ 577      66
+ 578 0577 89C8     		movl	%ecx, %eax
+ 579 0579 F7EA     		imull	%edx
+ 580 057b C1FA02   		sarl	$2, %edx
+ 581 057e 89C8     		movl	%ecx, %eax
+ 582 0580 C1F81F   		sarl	$31, %eax
+ 583 0583 29C2     		subl	%eax, %edx
+ 584 0585 89D0     		movl	%edx, %eax
+ 585 0587 894508   		movl	%eax, 8(%ebp)
+ 586              	L19:
+ 145:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     while(num > 0)
+ 587              		.loc 2 145 0
+ 588 058a 837D0800 		cmpl	$0, 8(%ebp)
+ 589 058e 7FA8     		jg	L20
+ 149:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     }
+ 150:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     return reverseNum;
+ 590              		.loc 2 150 0
+ 591 0590 8B45F8   		movl	-8(%ebp), %eax
+ 151:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** }
+ 592              		.loc 2 151 0
+ 593 0593 83C410   		addl	$16, %esp
+ 594 0596 5B       		popl	%ebx
+ 595              		.cfi_restore 3
+ 596 0597 5D       		popl	%ebp
+ 597              		.cfi_restore 5
+ 598              		.cfi_def_cfa 4, 4
+ 599 0598 C3       		ret
+ 600              		.cfi_endproc
+ 601              	LFE12:
+ 602              		.section .rdata,"dr"
+ 603              	LC14:
+ 604 0175 257800   		.ascii "%x\0"
+ 605              		.text
+ 606              		.globl	_sprintfkeys
+ 608              	_sprintfkeys:
+ 609              	LFB13:
+ 152:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+ 153:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** int sprintfkeys(char* keyPtr, unsigned int LFSR_STATE)
+ 154:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** {
+ 610              		.loc 2 154 0
+ 611              		.cfi_startproc
+ 612 0599 55       		pushl	%ebp
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 22
+
+
+ 613              		.cfi_def_cfa_offset 8
+ 614              		.cfi_offset 5, -8
+ 615 059a 89E5     		movl	%esp, %ebp
+ 616              		.cfi_def_cfa_register 5
+ 617 059c 83EC18   		subl	$24, %esp
+ 155:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     return sprintf(keyPtr , "%x", LFSR_STATE);
+ 618              		.loc 2 155 0
+ 619 059f 8B450C   		movl	12(%ebp), %eax
+ 620 05a2 89442408 		movl	%eax, 8(%esp)
+ 621 05a6 C7442404 		movl	$LC14, 4(%esp)
+ 621      75010000 
+ 622 05ae 8B4508   		movl	8(%ebp), %eax
+ 623 05b1 890424   		movl	%eax, (%esp)
+ 624 05b4 E870FAFF 		call	_sprintf
+ 624      FF
+ 156:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** }
+ 625              		.loc 2 156 0
+ 626 05b9 C9       		leave
+ 627              		.cfi_restore 5
+ 628              		.cfi_def_cfa 4, 4
+ 629 05ba C3       		ret
+ 630              		.cfi_endproc
+ 631              	LFE13:
+ 632              		.section .rdata,"dr"
+ 633              	LC15:
+ 634 0178 2000     		.ascii " \0"
+ 635              		.text
+ 636              		.globl	_printBinary
+ 638              	_printBinary:
+ 639              	LFB14:
+ 157:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+ 158:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** void printBinary(char stringPtr[])
+ 159:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** {
+ 640              		.loc 2 159 0
+ 641              		.cfi_startproc
+ 642 05bb 55       		pushl	%ebp
+ 643              		.cfi_def_cfa_offset 8
+ 644              		.cfi_offset 5, -8
+ 645 05bc 89E5     		movl	%esp, %ebp
+ 646              		.cfi_def_cfa_register 5
+ 647 05be 83EC28   		subl	$40, %esp
+ 160:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     char* strPtr = &stringPtr[0];
+ 648              		.loc 2 160 0
+ 649 05c1 8B4508   		movl	8(%ebp), %eax
+ 650 05c4 8945F4   		movl	%eax, -12(%ebp)
+ 161:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     while(*strPtr)
+ 651              		.loc 2 161 0
+ 652 05c7 EB0C     		jmp	L25
+ 653              	L26:
+ 162:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     {
+ 163:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+ 164:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         printf(" ");
+ 654              		.loc 2 164 0
+ 655 05c9 C7042478 		movl	$LC15, (%esp)
+ 655      010000
+ 656 05d0 E82BFAFF 		call	_printf
+ 656      FF
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 23
+
+
+ 657              	L25:
+ 161:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     while(*strPtr)
+ 658              		.loc 2 161 0
+ 659 05d5 8B45F4   		movl	-12(%ebp), %eax
+ 660 05d8 0FB600   		movzbl	(%eax), %eax
+ 661 05db 84C0     		testb	%al, %al
+ 662 05dd 75EA     		jne	L26
+ 165:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     }
+ 166:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     printf("\n");
+ 663              		.loc 2 166 0
+ 664 05df C70424C7 		movl	$LC6, (%esp)
+ 664      000000
+ 665 05e6 E815FAFF 		call	_printf
+ 665      FF
+ 167:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** }
+ 666              		.loc 2 167 0
+ 667 05eb C9       		leave
+ 668              		.cfi_restore 5
+ 669              		.cfi_def_cfa 4, 4
+ 670 05ec C3       		ret
+ 671              		.cfi_endproc
+ 672              	LFE14:
+ 673              		.section .rdata,"dr"
+ 674              	LC16:
+ 675 017a 256400   		.ascii "%d\0"
+ 676 017d 000000   		.text
+ 677              		.globl	_printCharAsBinary
+ 679              	_printCharAsBinary:
+ 680              	LFB15:
+ 168:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+ 169:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** void printCharAsBinary(char c) {
+ 681              		.loc 2 169 0
+ 682              		.cfi_startproc
+ 683 05ed 55       		pushl	%ebp
+ 684              		.cfi_def_cfa_offset 8
+ 685              		.cfi_offset 5, -8
+ 686 05ee 89E5     		movl	%esp, %ebp
+ 687              		.cfi_def_cfa_register 5
+ 688 05f0 83EC38   		subl	$56, %esp
+ 689 05f3 8B4508   		movl	8(%ebp), %eax
+ 690 05f6 8845E4   		movb	%al, -28(%ebp)
+ 170:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     int i;
+ 171:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     for(i = 0; i < 8; i++){
+ 691              		.loc 2 171 0
+ 692 05f9 C745F400 		movl	$0, -12(%ebp)
+ 692      000000
+ 693 0600 EB2E     		jmp	L28
+ 694              	L29:
+ 172:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         printf("%d", !!((c << i) & 0x80));
+ 695              		.loc 2 172 0 discriminator 3
+ 696 0602 0FBE55E4 		movsbl	-28(%ebp), %edx
+ 697 0606 8B45F4   		movl	-12(%ebp), %eax
+ 698 0609 89C1     		movl	%eax, %ecx
+ 699 060b D3E2     		sall	%cl, %edx
+ 700 060d 89D0     		movl	%edx, %eax
+ 701 060f 25800000 		andl	$128, %eax
+ 701      00
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 24
+
+
+ 702 0614 85C0     		testl	%eax, %eax
+ 703 0616 0F95C0   		setne	%al
+ 704 0619 0FB6C0   		movzbl	%al, %eax
+ 705 061c 89442404 		movl	%eax, 4(%esp)
+ 706 0620 C704247A 		movl	$LC16, (%esp)
+ 706      010000
+ 707 0627 E8D4F9FF 		call	_printf
+ 707      FF
+ 171:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         printf("%d", !!((c << i) & 0x80));
+ 708              		.loc 2 171 0 discriminator 3
+ 709 062c 8345F401 		addl	$1, -12(%ebp)
+ 710              	L28:
+ 171:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         printf("%d", !!((c << i) & 0x80));
+ 711              		.loc 2 171 0 is_stmt 0 discriminator 1
+ 712 0630 837DF407 		cmpl	$7, -12(%ebp)
+ 713 0634 7ECC     		jle	L29
+ 173:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     }
+ 174:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** }
+ 714              		.loc 2 174 0 is_stmt 1
+ 715 0636 C9       		leave
+ 716              		.cfi_restore 5
+ 717              		.cfi_def_cfa 4, 4
+ 718 0637 C3       		ret
+ 719              		.cfi_endproc
+ 720              	LFE15:
+ 721              		.globl	_printStringAsBinary
+ 723              	_printStringAsBinary:
+ 724              	LFB16:
+ 175:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** 
+ 176:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** void printStringAsBinary(char* s){
+ 725              		.loc 2 176 0
+ 726              		.cfi_startproc
+ 727 0638 55       		pushl	%ebp
+ 728              		.cfi_def_cfa_offset 8
+ 729              		.cfi_offset 5, -8
+ 730 0639 89E5     		movl	%esp, %ebp
+ 731              		.cfi_def_cfa_register 5
+ 732 063b 83EC18   		subl	$24, %esp
+ 177:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     for(; *s; s++){
+ 733              		.loc 2 177 0
+ 734 063e EB21     		jmp	L31
+ 735              	L32:
+ 178:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****         printCharAsBinary(*s);
+ 736              		.loc 2 178 0 discriminator 2
+ 737 0640 8B4508   		movl	8(%ebp), %eax
+ 738 0643 0FB600   		movzbl	(%eax), %eax
+ 739 0646 0FBEC0   		movsbl	%al, %eax
+ 740 0649 890424   		movl	%eax, (%esp)
+ 741 064c E89CFFFF 		call	_printCharAsBinary
+ 741      FF
+ 179:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     printf(" ");
+ 742              		.loc 2 179 0 discriminator 2
+ 743 0651 C7042478 		movl	$LC15, (%esp)
+ 743      010000
+ 744 0658 E8A3F9FF 		call	_printf
+ 744      FF
+ 177:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     for(; *s; s++){
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 25
+
+
+ 745              		.loc 2 177 0 discriminator 2
+ 746 065d 83450801 		addl	$1, 8(%ebp)
+ 747              	L31:
+ 177:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     for(; *s; s++){
+ 748              		.loc 2 177 0 is_stmt 0 discriminator 1
+ 749 0661 8B4508   		movl	8(%ebp), %eax
+ 750 0664 0FB600   		movzbl	(%eax), %eax
+ 751 0667 84C0     		testb	%al, %al
+ 752 0669 75D5     		jne	L32
+ 180:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     }
+ 181:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c ****     printf("\n");
+ 753              		.loc 2 181 0 is_stmt 1
+ 754 066b C70424C7 		movl	$LC6, (%esp)
+ 754      000000
+ 755 0672 E889F9FF 		call	_printf
+ 755      FF
+ 182:D:/SDSU/OneDrive - San Diego State University (SDSU.EDU)/Semesters/Spring 2018/COMPE 271/new f/Vernam Again\main.c **** }
+ 756              		.loc 2 182 0
+ 757 0677 C9       		leave
+ 758              		.cfi_restore 5
+ 759              		.cfi_def_cfa 4, 4
+ 760 0678 C3       		ret
+ 761              		.cfi_endproc
+ 762              	LFE16:
+ 763              	Letext0:
+ 764 0679 909090   		.section	.debug_info,"dr"
+ 765              	Ldebug_info0:
+ 766 0000 A4060000 		.long	0x6a4
+ 767 0004 0400     		.word	0x4
+ 768 0006 00000000 		.secrel32	Ldebug_abbrev0
+ 769 000a 04       		.byte	0x4
+ 770 000b 01       		.uleb128 0x1
+ 771 000c 474E5520 		.ascii "GNU C 4.9.2 -mtune=generic -march=pentiumpro -g -std=c99\0"
+ 771      4320342E 
+ 771      392E3220 
+ 771      2D6D7475 
+ 771      6E653D67 
+ 772 0045 01       		.byte	0x1
+ 773 0046 443A5C53 		.ascii "D:\\SDSU\\OneDrive - San Diego State University (SDSU.EDU)\\Semesters\\Spring 2018\\COMPE 
+ 773      4453555C 
+ 773      4F6E6544 
+ 773      72697665 
+ 773      202D2053 
+ 774 00b9 00000000 		.long	Ltext0
+ 775 00bd 79060000 		.long	Letext0-Ltext0
+ 776 00c1 00000000 		.secrel32	Ldebug_line0
+ 777 00c5 02       		.uleb128 0x2
+ 778 00c6 02       		.byte	0x2
+ 779 00c7 07       		.byte	0x7
+ 780 00c8 73686F72 		.ascii "short unsigned int\0"
+ 780      7420756E 
+ 780      7369676E 
+ 780      65642069 
+ 780      6E7400
+ 781 00db 02       		.uleb128 0x2
+ 782 00dc 01       		.byte	0x1
+ 783 00dd 06       		.byte	0x6
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 26
+
+
+ 784 00de 7369676E 		.ascii "signed char\0"
+ 784      65642063 
+ 784      68617200 
+ 785 00ea 02       		.uleb128 0x2
+ 786 00eb 01       		.byte	0x1
+ 787 00ec 08       		.byte	0x8
+ 788 00ed 756E7369 		.ascii "unsigned char\0"
+ 788      676E6564 
+ 788      20636861 
+ 788      7200
+ 789 00fb 02       		.uleb128 0x2
+ 790 00fc 02       		.byte	0x2
+ 791 00fd 05       		.byte	0x5
+ 792 00fe 73686F72 		.ascii "short int\0"
+ 792      7420696E 
+ 792      7400
+ 793 0108 02       		.uleb128 0x2
+ 794 0109 04       		.byte	0x4
+ 795 010a 05       		.byte	0x5
+ 796 010b 696E7400 		.ascii "int\0"
+ 797 010f 02       		.uleb128 0x2
+ 798 0110 04       		.byte	0x4
+ 799 0111 07       		.byte	0x7
+ 800 0112 756E7369 		.ascii "unsigned int\0"
+ 800      676E6564 
+ 800      20696E74 
+ 800      00
+ 801 011f 02       		.uleb128 0x2
+ 802 0120 08       		.byte	0x8
+ 803 0121 05       		.byte	0x5
+ 804 0122 6C6F6E67 		.ascii "long long int\0"
+ 804      206C6F6E 
+ 804      6720696E 
+ 804      7400
+ 805 0130 02       		.uleb128 0x2
+ 806 0131 08       		.byte	0x8
+ 807 0132 07       		.byte	0x7
+ 808 0133 6C6F6E67 		.ascii "long long unsigned int\0"
+ 808      206C6F6E 
+ 808      6720756E 
+ 808      7369676E 
+ 808      65642069 
+ 809 014a 03       		.uleb128 0x3
+ 810 014b 04       		.byte	0x4
+ 811 014c 5F5F6275 		.ascii "__builtin_va_list\0"
+ 811      696C7469 
+ 811      6E5F7661 
+ 811      5F6C6973 
+ 811      7400
+ 812 015e 62010000 		.long	0x162
+ 813 0162 02       		.uleb128 0x2
+ 814 0163 01       		.byte	0x1
+ 815 0164 06       		.byte	0x6
+ 816 0165 63686172 		.ascii "char\0"
+ 816      00
+ 817 016a 04       		.uleb128 0x4
+ 818 016b 5F696F62 		.ascii "_iobuf\0"
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 27
+
+
+ 818      756600
+ 819 0172 20       		.byte	0x20
+ 820 0173 01       		.byte	0x1
+ 821 0174 81       		.byte	0x81
+ 822 0175 F1010000 		.long	0x1f1
+ 823 0179 05       		.uleb128 0x5
+ 824 017a 5F707472 		.ascii "_ptr\0"
+ 824      00
+ 825 017f 01       		.byte	0x1
+ 826 0180 83       		.byte	0x83
+ 827 0181 F1010000 		.long	0x1f1
+ 828 0185 00       		.byte	0
+ 829 0186 05       		.uleb128 0x5
+ 830 0187 5F636E74 		.ascii "_cnt\0"
+ 830      00
+ 831 018c 01       		.byte	0x1
+ 832 018d 84       		.byte	0x84
+ 833 018e 08010000 		.long	0x108
+ 834 0192 04       		.byte	0x4
+ 835 0193 05       		.uleb128 0x5
+ 836 0194 5F626173 		.ascii "_base\0"
+ 836      6500
+ 837 019a 01       		.byte	0x1
+ 838 019b 85       		.byte	0x85
+ 839 019c F1010000 		.long	0x1f1
+ 840 01a0 08       		.byte	0x8
+ 841 01a1 05       		.uleb128 0x5
+ 842 01a2 5F666C61 		.ascii "_flag\0"
+ 842      6700
+ 843 01a8 01       		.byte	0x1
+ 844 01a9 86       		.byte	0x86
+ 845 01aa 08010000 		.long	0x108
+ 846 01ae 0C       		.byte	0xc
+ 847 01af 05       		.uleb128 0x5
+ 848 01b0 5F66696C 		.ascii "_file\0"
+ 848      6500
+ 849 01b6 01       		.byte	0x1
+ 850 01b7 87       		.byte	0x87
+ 851 01b8 08010000 		.long	0x108
+ 852 01bc 10       		.byte	0x10
+ 853 01bd 05       		.uleb128 0x5
+ 854 01be 5F636861 		.ascii "_charbuf\0"
+ 854      72627566 
+ 854      00
+ 855 01c7 01       		.byte	0x1
+ 856 01c8 88       		.byte	0x88
+ 857 01c9 08010000 		.long	0x108
+ 858 01cd 14       		.byte	0x14
+ 859 01ce 05       		.uleb128 0x5
+ 860 01cf 5F627566 		.ascii "_bufsiz\0"
+ 860      73697A00 
+ 861 01d7 01       		.byte	0x1
+ 862 01d8 89       		.byte	0x89
+ 863 01d9 08010000 		.long	0x108
+ 864 01dd 18       		.byte	0x18
+ 865 01de 05       		.uleb128 0x5
+ 866 01df 5F746D70 		.ascii "_tmpfname\0"
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 28
+
+
+ 866      666E616D 
+ 866      6500
+ 867 01e9 01       		.byte	0x1
+ 868 01ea 8A       		.byte	0x8a
+ 869 01eb F1010000 		.long	0x1f1
+ 870 01ef 1C       		.byte	0x1c
+ 871 01f0 00       		.byte	0
+ 872 01f1 06       		.uleb128 0x6
+ 873 01f2 04       		.byte	0x4
+ 874 01f3 62010000 		.long	0x162
+ 875 01f7 07       		.uleb128 0x7
+ 876 01f8 46494C45 		.ascii "FILE\0"
+ 876      00
+ 877 01fd 01       		.byte	0x1
+ 878 01fe 8B       		.byte	0x8b
+ 879 01ff 6A010000 		.long	0x16a
+ 880 0203 02       		.uleb128 0x2
+ 881 0204 04       		.byte	0x4
+ 882 0205 05       		.byte	0x5
+ 883 0206 6C6F6E67 		.ascii "long int\0"
+ 883      20696E74 
+ 883      00
+ 884 020f 08       		.uleb128 0x8
+ 885 0210 7072696E 		.ascii "printf\0"
+ 885      746600
+ 886 0217 01       		.byte	0x1
+ 887 0218 FC       		.byte	0xfc
+ 888 0219 08010000 		.long	0x108
+ 889 021d 00000000 		.long	LFB1
+ 890 0221 29000000 		.long	LFE1-LFB1
+ 891 0225 01       		.uleb128 0x1
+ 892 0226 9C       		.byte	0x9c
+ 893 0227 56020000 		.long	0x256
+ 894 022b 09       		.uleb128 0x9
+ 895 022c 09000000 		.secrel32	LASF2
+ 896 0230 01       		.byte	0x1
+ 897 0231 FC       		.byte	0xfc
+ 898 0232 56020000 		.long	0x256
+ 899 0236 02       		.uleb128 0x2
+ 900 0237 91       		.byte	0x91
+ 901 0238 00       		.sleb128 0
+ 902 0239 0A       		.uleb128 0xa
+ 903 023a 0B       		.uleb128 0xb
+ 904 023b 00000000 		.secrel32	LASF0
+ 905 023f 01       		.byte	0x1
+ 906 0240 FE       		.byte	0xfe
+ 907 0241 08010000 		.long	0x108
+ 908 0245 01       		.uleb128 0x1
+ 909 0246 53       		.byte	0x53
+ 910 0247 0B       		.uleb128 0xb
+ 911 0248 12000000 		.secrel32	LASF1
+ 912 024c 01       		.byte	0x1
+ 913 024d FF       		.byte	0xff
+ 914 024e 4A010000 		.long	0x14a
+ 915 0252 02       		.uleb128 0x2
+ 916 0253 91       		.byte	0x91
+ 917 0254 6C       		.sleb128 -20
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 29
+
+
+ 918 0255 00       		.byte	0
+ 919 0256 06       		.uleb128 0x6
+ 920 0257 04       		.byte	0x4
+ 921 0258 5C020000 		.long	0x25c
+ 922 025c 0C       		.uleb128 0xc
+ 923 025d 62010000 		.long	0x162
+ 924 0261 0D       		.uleb128 0xd
+ 925 0262 73707269 		.ascii "sprintf\0"
+ 925      6E746600 
+ 926 026a 01       		.byte	0x1
+ 927 026b 0601     		.word	0x106
+ 928 026d 08010000 		.long	0x108
+ 929 0271 29000000 		.long	LFB2
+ 930 0275 30000000 		.long	LFE2-LFB2
+ 931 0279 01       		.uleb128 0x1
+ 932 027a 9C       		.byte	0x9c
+ 933 027b C1020000 		.long	0x2c1
+ 934 027f 0E       		.uleb128 0xe
+ 935 0280 5F5F7374 		.ascii "__stream\0"
+ 935      7265616D 
+ 935      00
+ 936 0289 01       		.byte	0x1
+ 937 028a 0601     		.word	0x106
+ 938 028c F1010000 		.long	0x1f1
+ 939 0290 02       		.uleb128 0x2
+ 940 0291 91       		.byte	0x91
+ 941 0292 00       		.sleb128 0
+ 942 0293 0F       		.uleb128 0xf
+ 943 0294 09000000 		.secrel32	LASF2
+ 944 0298 01       		.byte	0x1
+ 945 0299 0601     		.word	0x106
+ 946 029b 56020000 		.long	0x256
+ 947 029f 02       		.uleb128 0x2
+ 948 02a0 91       		.byte	0x91
+ 949 02a1 04       		.sleb128 4
+ 950 02a2 0A       		.uleb128 0xa
+ 951 02a3 10       		.uleb128 0x10
+ 952 02a4 00000000 		.secrel32	LASF0
+ 953 02a8 01       		.byte	0x1
+ 954 02a9 0801     		.word	0x108
+ 955 02ab 08010000 		.long	0x108
+ 956 02af 01       		.uleb128 0x1
+ 957 02b0 53       		.byte	0x53
+ 958 02b1 10       		.uleb128 0x10
+ 959 02b2 12000000 		.secrel32	LASF1
+ 960 02b6 01       		.byte	0x1
+ 961 02b7 0901     		.word	0x109
+ 962 02b9 4A010000 		.long	0x14a
+ 963 02bd 02       		.uleb128 0x2
+ 964 02be 91       		.byte	0x91
+ 965 02bf 6C       		.sleb128 -20
+ 966 02c0 00       		.byte	0
+ 967 02c1 11       		.uleb128 0x11
+ 968 02c2 6D61696E 		.ascii "main\0"
+ 968      00
+ 969 02c7 02       		.byte	0x2
+ 970 02c8 19       		.byte	0x19
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 30
+
+
+ 971 02c9 08010000 		.long	0x108
+ 972 02cd 59000000 		.long	LFB10
+ 973 02d1 34020000 		.long	LFE10-LFB10
+ 974 02d5 01       		.uleb128 0x1
+ 975 02d6 9C       		.byte	0x9c
+ 976 02d7 63030000 		.long	0x363
+ 977 02db 12       		.uleb128 0x12
+ 978 02dc 63757272 		.ascii "currentTime\0"
+ 978      656E7454 
+ 978      696D6500 
+ 979 02e8 02       		.byte	0x2
+ 980 02e9 1A       		.byte	0x1a
+ 981 02ea 0F010000 		.long	0x10f
+ 982 02ee 03       		.uleb128 0x3
+ 983 02ef 74       		.byte	0x74
+ 984 02f0 FC04     		.sleb128 636
+ 985 02f2 12       		.uleb128 0x12
+ 986 02f3 63757272 		.ascii "currentTimeA\0"
+ 986      656E7454 
+ 986      696D6541 
+ 986      00
+ 987 0300 02       		.byte	0x2
+ 988 0301 1A       		.byte	0x1a
+ 989 0302 0F010000 		.long	0x10f
+ 990 0306 03       		.uleb128 0x3
+ 991 0307 74       		.byte	0x74
+ 992 0308 F804     		.sleb128 632
+ 993 030a 12       		.uleb128 0x12
+ 994 030b 73747269 		.ascii "stringLen\0"
+ 994      6E674C65 
+ 994      6E00
+ 995 0315 02       		.byte	0x2
+ 996 0316 1B       		.byte	0x1b
+ 997 0317 0F010000 		.long	0x10f
+ 998 031b 03       		.uleb128 0x3
+ 999 031c 74       		.byte	0x74
+ 1000 031d F404     		.sleb128 628
+ 1001 031f 12       		.uleb128 0x12
+ 1002 0320 6B657900 		.ascii "key\0"
+ 1003 0324 02       		.byte	0x2
+ 1004 0325 1C       		.byte	0x1c
+ 1005 0326 63030000 		.long	0x363
+ 1006 032a 03       		.uleb128 0x3
+ 1007 032b 74       		.byte	0x74
+ 1008 032c AA03     		.sleb128 426
+ 1009 032e 12       		.uleb128 0x12
+ 1010 032f 6B657941 		.ascii "keyA\0"
+ 1010      00
+ 1011 0334 02       		.byte	0x2
+ 1012 0335 1D       		.byte	0x1d
+ 1013 0336 63030000 		.long	0x363
+ 1014 033a 03       		.uleb128 0x3
+ 1015 033b 74       		.byte	0x74
+ 1016 033c E001     		.sleb128 224
+ 1017 033e 12       		.uleb128 0x12
+ 1018 033f 63697068 		.ascii "cipher\0"
+ 1018      657200
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 31
+
+
+ 1019 0346 02       		.byte	0x2
+ 1020 0347 1E       		.byte	0x1e
+ 1021 0348 7F030000 		.long	0x37f
+ 1022 034c 03       		.uleb128 0x3
+ 1023 034d 74       		.byte	0x74
+ 1024 034e FB00     		.sleb128 123
+ 1025 0350 12       		.uleb128 0x12
+ 1026 0351 6D657373 		.ascii "message\0"
+ 1026      61676500 
+ 1027 0359 02       		.byte	0x2
+ 1028 035a 1F       		.byte	0x1f
+ 1029 035b 7F030000 		.long	0x37f
+ 1030 035f 02       		.uleb128 0x2
+ 1031 0360 74       		.byte	0x74
+ 1032 0361 16       		.sleb128 22
+ 1033 0362 00       		.byte	0
+ 1034 0363 13       		.uleb128 0x13
+ 1035 0364 62010000 		.long	0x162
+ 1036 0368 73030000 		.long	0x373
+ 1037 036c 14       		.uleb128 0x14
+ 1038 036d 73030000 		.long	0x373
+ 1039 0371 C9       		.byte	0xc9
+ 1040 0372 00       		.byte	0
+ 1041 0373 02       		.uleb128 0x2
+ 1042 0374 04       		.byte	0x4
+ 1043 0375 07       		.byte	0x7
+ 1044 0376 73697A65 		.ascii "sizetype\0"
+ 1044      74797065 
+ 1044      00
+ 1045 037f 13       		.uleb128 0x13
+ 1046 0380 62010000 		.long	0x162
+ 1047 0384 8F030000 		.long	0x38f
+ 1048 0388 14       		.uleb128 0x14
+ 1049 0389 73030000 		.long	0x373
+ 1050 038d 64       		.byte	0x64
+ 1051 038e 00       		.byte	0
+ 1052 038f 11       		.uleb128 0x11
+ 1053 0390 5665726E 		.ascii "Vernam\0"
+ 1053      616D00
+ 1054 0397 02       		.byte	0x2
+ 1055 0398 51       		.byte	0x51
+ 1056 0399 08010000 		.long	0x108
+ 1057 039d 8D020000 		.long	LFB11
+ 1058 03a1 9B020000 		.long	LFE11-LFB11
+ 1059 03a5 01       		.uleb128 0x1
+ 1060 03a6 9C       		.byte	0x9c
+ 1061 03a7 F4040000 		.long	0x4f4
+ 1062 03ab 15       		.uleb128 0x15
+ 1063 03ac 6B657900 		.ascii "key\0"
+ 1064 03b0 02       		.byte	0x2
+ 1065 03b1 51       		.byte	0x51
+ 1066 03b2 F1010000 		.long	0x1f1
+ 1067 03b6 02       		.uleb128 0x2
+ 1068 03b7 91       		.byte	0x91
+ 1069 03b8 00       		.sleb128 0
+ 1070 03b9 15       		.uleb128 0x15
+ 1071 03ba 6D657373 		.ascii "message\0"
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 32
+
+
+ 1071      61676500 
+ 1072 03c2 02       		.byte	0x2
+ 1073 03c3 51       		.byte	0x51
+ 1074 03c4 F1010000 		.long	0x1f1
+ 1075 03c8 02       		.uleb128 0x2
+ 1076 03c9 91       		.byte	0x91
+ 1077 03ca 04       		.sleb128 4
+ 1078 03cb 15       		.uleb128 0x15
+ 1079 03cc 63697068 		.ascii "cipher\0"
+ 1079      657200
+ 1080 03d3 02       		.byte	0x2
+ 1081 03d4 51       		.byte	0x51
+ 1082 03d5 F1010000 		.long	0x1f1
+ 1083 03d9 02       		.uleb128 0x2
+ 1084 03da 91       		.byte	0x91
+ 1085 03db 08       		.sleb128 8
+ 1086 03dc 12       		.uleb128 0x12
+ 1087 03dd 62756666 		.ascii "bufferMessageByte\0"
+ 1087      65724D65 
+ 1087      73736167 
+ 1087      65427974 
+ 1087      6500
+ 1088 03ef 02       		.byte	0x2
+ 1089 03f0 53       		.byte	0x53
+ 1090 03f1 F4040000 		.long	0x4f4
+ 1091 03f5 02       		.uleb128 0x2
+ 1092 03f6 91       		.byte	0x91
+ 1093 03f7 43       		.sleb128 -61
+ 1094 03f8 12       		.uleb128 0x12
+ 1095 03f9 62756666 		.ascii "bufferKeyByte\0"
+ 1095      65724B65 
+ 1095      79427974 
+ 1095      6500
+ 1096 0407 02       		.byte	0x2
+ 1097 0408 54       		.byte	0x54
+ 1098 0409 04050000 		.long	0x504
+ 1099 040d 02       		.uleb128 0x2
+ 1100 040e 91       		.byte	0x91
+ 1101 040f 40       		.sleb128 -64
+ 1102 0410 12       		.uleb128 0x12
+ 1103 0411 6B657947 		.ascii "keyGenerated\0"
+ 1103      656E6572 
+ 1103      61746564 
+ 1103      00
+ 1104 041e 02       		.byte	0x2
+ 1105 041f 55       		.byte	0x55
+ 1106 0420 14050000 		.long	0x514
+ 1107 0424 03       		.uleb128 0x3
+ 1108 0425 91       		.byte	0x91
+ 1109 0426 5C       		.sleb128 -36
+ 1110 0427 06       		.byte	0x6
+ 1111 0428 12       		.uleb128 0x12
+ 1112 0429 63697068 		.ascii "cipherGenerated\0"
+ 1112      65724765 
+ 1112      6E657261 
+ 1112      74656400 
+ 1113 0439 02       		.byte	0x2
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 33
+
+
+ 1114 043a 56       		.byte	0x56
+ 1115 043b 27050000 		.long	0x527
+ 1116 043f 03       		.uleb128 0x3
+ 1117 0440 91       		.byte	0x91
+ 1118 0441 54       		.sleb128 -44
+ 1119 0442 06       		.byte	0x6
+ 1120 0443 12       		.uleb128 0x12
+ 1121 0444 7265636F 		.ascii "reconstructedMessage\0"
+ 1121      6E737472 
+ 1121      75637465 
+ 1121      644D6573 
+ 1121      73616765 
+ 1122 0459 02       		.byte	0x2
+ 1123 045a 57       		.byte	0x57
+ 1124 045b 3A050000 		.long	0x53a
+ 1125 045f 03       		.uleb128 0x3
+ 1126 0460 91       		.byte	0x91
+ 1127 0461 4C       		.sleb128 -52
+ 1128 0462 06       		.byte	0x6
+ 1129 0463 12       		.uleb128 0x12
+ 1130 0464 6D657373 		.ascii "messagePtr\0"
+ 1130      61676550 
+ 1130      747200
+ 1131 046f 02       		.byte	0x2
+ 1132 0470 58       		.byte	0x58
+ 1133 0471 F1010000 		.long	0x1f1
+ 1134 0475 02       		.uleb128 0x2
+ 1135 0476 91       		.byte	0x91
+ 1136 0477 6C       		.sleb128 -20
+ 1137 0478 12       		.uleb128 0x12
+ 1138 0479 6B657950 		.ascii "keyPtr\0"
+ 1138      747200
+ 1139 0480 02       		.byte	0x2
+ 1140 0481 59       		.byte	0x59
+ 1141 0482 F1010000 		.long	0x1f1
+ 1142 0486 02       		.uleb128 0x2
+ 1143 0487 91       		.byte	0x91
+ 1144 0488 68       		.sleb128 -24
+ 1145 0489 12       		.uleb128 0x12
+ 1146 048a 7374696E 		.ascii "stingLen\0"
+ 1146      674C656E 
+ 1146      00
+ 1147 0493 02       		.byte	0x2
+ 1148 0494 5A       		.byte	0x5a
+ 1149 0495 08010000 		.long	0x108
+ 1150 0499 02       		.uleb128 0x2
+ 1151 049a 91       		.byte	0x91
+ 1152 049b 48       		.sleb128 -56
+ 1153 049c 12       		.uleb128 0x12
+ 1154 049d 6B657953 		.ascii "keySymbolAscii\0"
+ 1154      796D626F 
+ 1154      6C417363 
+ 1154      696900
+ 1155 04ac 02       		.byte	0x2
+ 1156 04ad 5B       		.byte	0x5b
+ 1157 04ae EA000000 		.long	0xea
+ 1158 04b2 02       		.uleb128 0x2
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 34
+
+
+ 1159 04b3 91       		.byte	0x91
+ 1160 04b4 47       		.sleb128 -57
+ 1161 04b5 12       		.uleb128 0x12
+ 1162 04b6 6D657373 		.ascii "messageSymbolAscii\0"
+ 1162      61676553 
+ 1162      796D626F 
+ 1162      6C417363 
+ 1162      696900
+ 1163 04c9 02       		.byte	0x2
+ 1164 04ca 5C       		.byte	0x5c
+ 1165 04cb EA000000 		.long	0xea
+ 1166 04cf 02       		.uleb128 0x2
+ 1167 04d0 91       		.byte	0x91
+ 1168 04d1 46       		.sleb128 -58
+ 1169 04d2 12       		.uleb128 0x12
+ 1170 04d3 63697068 		.ascii "cipherByte\0"
+ 1170      65724279 
+ 1170      746500
+ 1171 04de 02       		.byte	0x2
+ 1172 04df 5D       		.byte	0x5d
+ 1173 04e0 EA000000 		.long	0xea
+ 1174 04e4 02       		.uleb128 0x2
+ 1175 04e5 91       		.byte	0x91
+ 1176 04e6 45       		.sleb128 -59
+ 1177 04e7 12       		.uleb128 0x12
+ 1178 04e8 6900     		.ascii "i\0"
+ 1179 04ea 02       		.byte	0x2
+ 1180 04eb 5E       		.byte	0x5e
+ 1181 04ec 08010000 		.long	0x108
+ 1182 04f0 02       		.uleb128 0x2
+ 1183 04f1 91       		.byte	0x91
+ 1184 04f2 64       		.sleb128 -28
+ 1185 04f3 00       		.byte	0
+ 1186 04f4 13       		.uleb128 0x13
+ 1187 04f5 62010000 		.long	0x162
+ 1188 04f9 04050000 		.long	0x504
+ 1189 04fd 14       		.uleb128 0x14
+ 1190 04fe 73030000 		.long	0x373
+ 1191 0502 01       		.byte	0x1
+ 1192 0503 00       		.byte	0
+ 1193 0504 13       		.uleb128 0x13
+ 1194 0505 62010000 		.long	0x162
+ 1195 0509 14050000 		.long	0x514
+ 1196 050d 14       		.uleb128 0x14
+ 1197 050e 73030000 		.long	0x373
+ 1198 0512 02       		.byte	0x2
+ 1199 0513 00       		.byte	0
+ 1200 0514 13       		.uleb128 0x13
+ 1201 0515 62010000 		.long	0x162
+ 1202 0519 27050000 		.long	0x527
+ 1203 051d 16       		.uleb128 0x16
+ 1204 051e 73030000 		.long	0x373
+ 1205 0522 03       		.uleb128 0x3
+ 1206 0523 91       		.byte	0x91
+ 1207 0524 60       		.sleb128 -32
+ 1208 0525 06       		.byte	0x6
+ 1209 0526 00       		.byte	0
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 35
+
+
+ 1210 0527 13       		.uleb128 0x13
+ 1211 0528 62010000 		.long	0x162
+ 1212 052c 3A050000 		.long	0x53a
+ 1213 0530 16       		.uleb128 0x16
+ 1214 0531 73030000 		.long	0x373
+ 1215 0535 03       		.uleb128 0x3
+ 1216 0536 91       		.byte	0x91
+ 1217 0537 58       		.sleb128 -40
+ 1218 0538 06       		.byte	0x6
+ 1219 0539 00       		.byte	0
+ 1220 053a 13       		.uleb128 0x13
+ 1221 053b 62010000 		.long	0x162
+ 1222 053f 4D050000 		.long	0x54d
+ 1223 0543 16       		.uleb128 0x16
+ 1224 0544 73030000 		.long	0x373
+ 1225 0548 03       		.uleb128 0x3
+ 1226 0549 91       		.byte	0x91
+ 1227 054a 50       		.sleb128 -48
+ 1228 054b 06       		.byte	0x6
+ 1229 054c 00       		.byte	0
+ 1230 054d 17       		.uleb128 0x17
+ 1231 054e 72657665 		.ascii "reverseTimeValue\0"
+ 1231      72736554 
+ 1231      696D6556 
+ 1231      616C7565 
+ 1231      00
+ 1232 055f 02       		.byte	0x2
+ 1233 0560 8E       		.byte	0x8e
+ 1234 0561 08010000 		.long	0x108
+ 1235 0565 28050000 		.long	LFB12
+ 1236 0569 71000000 		.long	LFE12-LFB12
+ 1237 056d 01       		.uleb128 0x1
+ 1238 056e 9C       		.byte	0x9c
+ 1239 056f 97050000 		.long	0x597
+ 1240 0573 15       		.uleb128 0x15
+ 1241 0574 6E756D00 		.ascii "num\0"
+ 1242 0578 02       		.byte	0x2
+ 1243 0579 8E       		.byte	0x8e
+ 1244 057a 08010000 		.long	0x108
+ 1245 057e 02       		.uleb128 0x2
+ 1246 057f 91       		.byte	0x91
+ 1247 0580 00       		.sleb128 0
+ 1248 0581 12       		.uleb128 0x12
+ 1249 0582 72657665 		.ascii "reverseNum\0"
+ 1249      7273654E 
+ 1249      756D00
+ 1250 058d 02       		.byte	0x2
+ 1251 058e 90       		.byte	0x90
+ 1252 058f 08010000 		.long	0x108
+ 1253 0593 02       		.uleb128 0x2
+ 1254 0594 91       		.byte	0x91
+ 1255 0595 70       		.sleb128 -16
+ 1256 0596 00       		.byte	0
+ 1257 0597 11       		.uleb128 0x11
+ 1258 0598 73707269 		.ascii "sprintfkeys\0"
+ 1258      6E74666B 
+ 1258      65797300 
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 36
+
+
+ 1259 05a4 02       		.byte	0x2
+ 1260 05a5 99       		.byte	0x99
+ 1261 05a6 08010000 		.long	0x108
+ 1262 05aa 99050000 		.long	LFB13
+ 1263 05ae 22000000 		.long	LFE13-LFB13
+ 1264 05b2 01       		.uleb128 0x1
+ 1265 05b3 9C       		.byte	0x9c
+ 1266 05b4 DF050000 		.long	0x5df
+ 1267 05b8 15       		.uleb128 0x15
+ 1268 05b9 6B657950 		.ascii "keyPtr\0"
+ 1268      747200
+ 1269 05c0 02       		.byte	0x2
+ 1270 05c1 99       		.byte	0x99
+ 1271 05c2 F1010000 		.long	0x1f1
+ 1272 05c6 02       		.uleb128 0x2
+ 1273 05c7 91       		.byte	0x91
+ 1274 05c8 00       		.sleb128 0
+ 1275 05c9 15       		.uleb128 0x15
+ 1276 05ca 4C465352 		.ascii "LFSR_STATE\0"
+ 1276      5F535441 
+ 1276      544500
+ 1277 05d5 02       		.byte	0x2
+ 1278 05d6 99       		.byte	0x99
+ 1279 05d7 0F010000 		.long	0x10f
+ 1280 05db 02       		.uleb128 0x2
+ 1281 05dc 91       		.byte	0x91
+ 1282 05dd 04       		.sleb128 4
+ 1283 05de 00       		.byte	0
+ 1284 05df 18       		.uleb128 0x18
+ 1285 05e0 7072696E 		.ascii "printBinary\0"
+ 1285      7442696E 
+ 1285      61727900 
+ 1286 05ec 02       		.byte	0x2
+ 1287 05ed 9E       		.byte	0x9e
+ 1288 05ee BB050000 		.long	LFB14
+ 1289 05f2 32000000 		.long	LFE14-LFB14
+ 1290 05f6 01       		.uleb128 0x1
+ 1291 05f7 9C       		.byte	0x9c
+ 1292 05f8 22060000 		.long	0x622
+ 1293 05fc 15       		.uleb128 0x15
+ 1294 05fd 73747269 		.ascii "stringPtr\0"
+ 1294      6E675074 
+ 1294      7200
+ 1295 0607 02       		.byte	0x2
+ 1296 0608 9E       		.byte	0x9e
+ 1297 0609 F1010000 		.long	0x1f1
+ 1298 060d 02       		.uleb128 0x2
+ 1299 060e 91       		.byte	0x91
+ 1300 060f 00       		.sleb128 0
+ 1301 0610 12       		.uleb128 0x12
+ 1302 0611 73747250 		.ascii "strPtr\0"
+ 1302      747200
+ 1303 0618 02       		.byte	0x2
+ 1304 0619 A0       		.byte	0xa0
+ 1305 061a F1010000 		.long	0x1f1
+ 1306 061e 02       		.uleb128 0x2
+ 1307 061f 91       		.byte	0x91
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 37
+
+
+ 1308 0620 6C       		.sleb128 -20
+ 1309 0621 00       		.byte	0
+ 1310 0622 18       		.uleb128 0x18
+ 1311 0623 7072696E 		.ascii "printCharAsBinary\0"
+ 1311      74436861 
+ 1311      72417342 
+ 1311      696E6172 
+ 1311      7900
+ 1312 0635 02       		.byte	0x2
+ 1313 0636 A9       		.byte	0xa9
+ 1314 0637 ED050000 		.long	LFB15
+ 1315 063b 4B000000 		.long	LFE15-LFB15
+ 1316 063f 01       		.uleb128 0x1
+ 1317 0640 9C       		.byte	0x9c
+ 1318 0641 5E060000 		.long	0x65e
+ 1319 0645 15       		.uleb128 0x15
+ 1320 0646 6300     		.ascii "c\0"
+ 1321 0648 02       		.byte	0x2
+ 1322 0649 A9       		.byte	0xa9
+ 1323 064a 62010000 		.long	0x162
+ 1324 064e 02       		.uleb128 0x2
+ 1325 064f 91       		.byte	0x91
+ 1326 0650 5C       		.sleb128 -36
+ 1327 0651 12       		.uleb128 0x12
+ 1328 0652 6900     		.ascii "i\0"
+ 1329 0654 02       		.byte	0x2
+ 1330 0655 AA       		.byte	0xaa
+ 1331 0656 08010000 		.long	0x108
+ 1332 065a 02       		.uleb128 0x2
+ 1333 065b 91       		.byte	0x91
+ 1334 065c 6C       		.sleb128 -20
+ 1335 065d 00       		.byte	0
+ 1336 065e 18       		.uleb128 0x18
+ 1337 065f 7072696E 		.ascii "printStringAsBinary\0"
+ 1337      74537472 
+ 1337      696E6741 
+ 1337      7342696E 
+ 1337      61727900 
+ 1338 0673 02       		.byte	0x2
+ 1339 0674 B0       		.byte	0xb0
+ 1340 0675 38060000 		.long	LFB16
+ 1341 0679 41000000 		.long	LFE16-LFB16
+ 1342 067d 01       		.uleb128 0x1
+ 1343 067e 9C       		.byte	0x9c
+ 1344 067f 90060000 		.long	0x690
+ 1345 0683 15       		.uleb128 0x15
+ 1346 0684 7300     		.ascii "s\0"
+ 1347 0686 02       		.byte	0x2
+ 1348 0687 B0       		.byte	0xb0
+ 1349 0688 F1010000 		.long	0x1f1
+ 1350 068c 02       		.uleb128 0x2
+ 1351 068d 91       		.byte	0x91
+ 1352 068e 00       		.sleb128 0
+ 1353 068f 00       		.byte	0
+ 1354 0690 13       		.uleb128 0x13
+ 1355 0691 F7010000 		.long	0x1f7
+ 1356 0695 9B060000 		.long	0x69b
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 38
+
+
+ 1357 0699 19       		.uleb128 0x19
+ 1358 069a 00       		.byte	0
+ 1359 069b 1A       		.uleb128 0x1a
+ 1360 069c 5F696F62 		.ascii "_iob\0"
+ 1360      00
+ 1361 06a1 01       		.byte	0x1
+ 1362 06a2 9A       		.byte	0x9a
+ 1363 06a3 90060000 		.long	0x690
+ 1364 06a7 00       		.byte	0
+ 1365              		.section	.debug_abbrev,"dr"
+ 1366              	Ldebug_abbrev0:
+ 1367 0000 01       		.uleb128 0x1
+ 1368 0001 11       		.uleb128 0x11
+ 1369 0002 01       		.byte	0x1
+ 1370 0003 25       		.uleb128 0x25
+ 1371 0004 08       		.uleb128 0x8
+ 1372 0005 13       		.uleb128 0x13
+ 1373 0006 0B       		.uleb128 0xb
+ 1374 0007 03       		.uleb128 0x3
+ 1375 0008 08       		.uleb128 0x8
+ 1376 0009 11       		.uleb128 0x11
+ 1377 000a 01       		.uleb128 0x1
+ 1378 000b 12       		.uleb128 0x12
+ 1379 000c 06       		.uleb128 0x6
+ 1380 000d 10       		.uleb128 0x10
+ 1381 000e 17       		.uleb128 0x17
+ 1382 000f 00       		.byte	0
+ 1383 0010 00       		.byte	0
+ 1384 0011 02       		.uleb128 0x2
+ 1385 0012 24       		.uleb128 0x24
+ 1386 0013 00       		.byte	0
+ 1387 0014 0B       		.uleb128 0xb
+ 1388 0015 0B       		.uleb128 0xb
+ 1389 0016 3E       		.uleb128 0x3e
+ 1390 0017 0B       		.uleb128 0xb
+ 1391 0018 03       		.uleb128 0x3
+ 1392 0019 08       		.uleb128 0x8
+ 1393 001a 00       		.byte	0
+ 1394 001b 00       		.byte	0
+ 1395 001c 03       		.uleb128 0x3
+ 1396 001d 0F       		.uleb128 0xf
+ 1397 001e 00       		.byte	0
+ 1398 001f 0B       		.uleb128 0xb
+ 1399 0020 0B       		.uleb128 0xb
+ 1400 0021 03       		.uleb128 0x3
+ 1401 0022 08       		.uleb128 0x8
+ 1402 0023 49       		.uleb128 0x49
+ 1403 0024 13       		.uleb128 0x13
+ 1404 0025 00       		.byte	0
+ 1405 0026 00       		.byte	0
+ 1406 0027 04       		.uleb128 0x4
+ 1407 0028 13       		.uleb128 0x13
+ 1408 0029 01       		.byte	0x1
+ 1409 002a 03       		.uleb128 0x3
+ 1410 002b 08       		.uleb128 0x8
+ 1411 002c 0B       		.uleb128 0xb
+ 1412 002d 0B       		.uleb128 0xb
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 39
+
+
+ 1413 002e 3A       		.uleb128 0x3a
+ 1414 002f 0B       		.uleb128 0xb
+ 1415 0030 3B       		.uleb128 0x3b
+ 1416 0031 0B       		.uleb128 0xb
+ 1417 0032 01       		.uleb128 0x1
+ 1418 0033 13       		.uleb128 0x13
+ 1419 0034 00       		.byte	0
+ 1420 0035 00       		.byte	0
+ 1421 0036 05       		.uleb128 0x5
+ 1422 0037 0D       		.uleb128 0xd
+ 1423 0038 00       		.byte	0
+ 1424 0039 03       		.uleb128 0x3
+ 1425 003a 08       		.uleb128 0x8
+ 1426 003b 3A       		.uleb128 0x3a
+ 1427 003c 0B       		.uleb128 0xb
+ 1428 003d 3B       		.uleb128 0x3b
+ 1429 003e 0B       		.uleb128 0xb
+ 1430 003f 49       		.uleb128 0x49
+ 1431 0040 13       		.uleb128 0x13
+ 1432 0041 38       		.uleb128 0x38
+ 1433 0042 0B       		.uleb128 0xb
+ 1434 0043 00       		.byte	0
+ 1435 0044 00       		.byte	0
+ 1436 0045 06       		.uleb128 0x6
+ 1437 0046 0F       		.uleb128 0xf
+ 1438 0047 00       		.byte	0
+ 1439 0048 0B       		.uleb128 0xb
+ 1440 0049 0B       		.uleb128 0xb
+ 1441 004a 49       		.uleb128 0x49
+ 1442 004b 13       		.uleb128 0x13
+ 1443 004c 00       		.byte	0
+ 1444 004d 00       		.byte	0
+ 1445 004e 07       		.uleb128 0x7
+ 1446 004f 16       		.uleb128 0x16
+ 1447 0050 00       		.byte	0
+ 1448 0051 03       		.uleb128 0x3
+ 1449 0052 08       		.uleb128 0x8
+ 1450 0053 3A       		.uleb128 0x3a
+ 1451 0054 0B       		.uleb128 0xb
+ 1452 0055 3B       		.uleb128 0x3b
+ 1453 0056 0B       		.uleb128 0xb
+ 1454 0057 49       		.uleb128 0x49
+ 1455 0058 13       		.uleb128 0x13
+ 1456 0059 00       		.byte	0
+ 1457 005a 00       		.byte	0
+ 1458 005b 08       		.uleb128 0x8
+ 1459 005c 2E       		.uleb128 0x2e
+ 1460 005d 01       		.byte	0x1
+ 1461 005e 03       		.uleb128 0x3
+ 1462 005f 08       		.uleb128 0x8
+ 1463 0060 3A       		.uleb128 0x3a
+ 1464 0061 0B       		.uleb128 0xb
+ 1465 0062 3B       		.uleb128 0x3b
+ 1466 0063 0B       		.uleb128 0xb
+ 1467 0064 27       		.uleb128 0x27
+ 1468 0065 19       		.uleb128 0x19
+ 1469 0066 49       		.uleb128 0x49
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 40
+
+
+ 1470 0067 13       		.uleb128 0x13
+ 1471 0068 11       		.uleb128 0x11
+ 1472 0069 01       		.uleb128 0x1
+ 1473 006a 12       		.uleb128 0x12
+ 1474 006b 06       		.uleb128 0x6
+ 1475 006c 40       		.uleb128 0x40
+ 1476 006d 18       		.uleb128 0x18
+ 1477 006e 9642     		.uleb128 0x2116
+ 1478 0070 19       		.uleb128 0x19
+ 1479 0071 01       		.uleb128 0x1
+ 1480 0072 13       		.uleb128 0x13
+ 1481 0073 00       		.byte	0
+ 1482 0074 00       		.byte	0
+ 1483 0075 09       		.uleb128 0x9
+ 1484 0076 05       		.uleb128 0x5
+ 1485 0077 00       		.byte	0
+ 1486 0078 03       		.uleb128 0x3
+ 1487 0079 0E       		.uleb128 0xe
+ 1488 007a 3A       		.uleb128 0x3a
+ 1489 007b 0B       		.uleb128 0xb
+ 1490 007c 3B       		.uleb128 0x3b
+ 1491 007d 0B       		.uleb128 0xb
+ 1492 007e 49       		.uleb128 0x49
+ 1493 007f 13       		.uleb128 0x13
+ 1494 0080 02       		.uleb128 0x2
+ 1495 0081 18       		.uleb128 0x18
+ 1496 0082 00       		.byte	0
+ 1497 0083 00       		.byte	0
+ 1498 0084 0A       		.uleb128 0xa
+ 1499 0085 18       		.uleb128 0x18
+ 1500 0086 00       		.byte	0
+ 1501 0087 00       		.byte	0
+ 1502 0088 00       		.byte	0
+ 1503 0089 0B       		.uleb128 0xb
+ 1504 008a 34       		.uleb128 0x34
+ 1505 008b 00       		.byte	0
+ 1506 008c 03       		.uleb128 0x3
+ 1507 008d 0E       		.uleb128 0xe
+ 1508 008e 3A       		.uleb128 0x3a
+ 1509 008f 0B       		.uleb128 0xb
+ 1510 0090 3B       		.uleb128 0x3b
+ 1511 0091 0B       		.uleb128 0xb
+ 1512 0092 49       		.uleb128 0x49
+ 1513 0093 13       		.uleb128 0x13
+ 1514 0094 02       		.uleb128 0x2
+ 1515 0095 18       		.uleb128 0x18
+ 1516 0096 00       		.byte	0
+ 1517 0097 00       		.byte	0
+ 1518 0098 0C       		.uleb128 0xc
+ 1519 0099 26       		.uleb128 0x26
+ 1520 009a 00       		.byte	0
+ 1521 009b 49       		.uleb128 0x49
+ 1522 009c 13       		.uleb128 0x13
+ 1523 009d 00       		.byte	0
+ 1524 009e 00       		.byte	0
+ 1525 009f 0D       		.uleb128 0xd
+ 1526 00a0 2E       		.uleb128 0x2e
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 41
+
+
+ 1527 00a1 01       		.byte	0x1
+ 1528 00a2 03       		.uleb128 0x3
+ 1529 00a3 08       		.uleb128 0x8
+ 1530 00a4 3A       		.uleb128 0x3a
+ 1531 00a5 0B       		.uleb128 0xb
+ 1532 00a6 3B       		.uleb128 0x3b
+ 1533 00a7 05       		.uleb128 0x5
+ 1534 00a8 27       		.uleb128 0x27
+ 1535 00a9 19       		.uleb128 0x19
+ 1536 00aa 49       		.uleb128 0x49
+ 1537 00ab 13       		.uleb128 0x13
+ 1538 00ac 11       		.uleb128 0x11
+ 1539 00ad 01       		.uleb128 0x1
+ 1540 00ae 12       		.uleb128 0x12
+ 1541 00af 06       		.uleb128 0x6
+ 1542 00b0 40       		.uleb128 0x40
+ 1543 00b1 18       		.uleb128 0x18
+ 1544 00b2 9642     		.uleb128 0x2116
+ 1545 00b4 19       		.uleb128 0x19
+ 1546 00b5 01       		.uleb128 0x1
+ 1547 00b6 13       		.uleb128 0x13
+ 1548 00b7 00       		.byte	0
+ 1549 00b8 00       		.byte	0
+ 1550 00b9 0E       		.uleb128 0xe
+ 1551 00ba 05       		.uleb128 0x5
+ 1552 00bb 00       		.byte	0
+ 1553 00bc 03       		.uleb128 0x3
+ 1554 00bd 08       		.uleb128 0x8
+ 1555 00be 3A       		.uleb128 0x3a
+ 1556 00bf 0B       		.uleb128 0xb
+ 1557 00c0 3B       		.uleb128 0x3b
+ 1558 00c1 05       		.uleb128 0x5
+ 1559 00c2 49       		.uleb128 0x49
+ 1560 00c3 13       		.uleb128 0x13
+ 1561 00c4 02       		.uleb128 0x2
+ 1562 00c5 18       		.uleb128 0x18
+ 1563 00c6 00       		.byte	0
+ 1564 00c7 00       		.byte	0
+ 1565 00c8 0F       		.uleb128 0xf
+ 1566 00c9 05       		.uleb128 0x5
+ 1567 00ca 00       		.byte	0
+ 1568 00cb 03       		.uleb128 0x3
+ 1569 00cc 0E       		.uleb128 0xe
+ 1570 00cd 3A       		.uleb128 0x3a
+ 1571 00ce 0B       		.uleb128 0xb
+ 1572 00cf 3B       		.uleb128 0x3b
+ 1573 00d0 05       		.uleb128 0x5
+ 1574 00d1 49       		.uleb128 0x49
+ 1575 00d2 13       		.uleb128 0x13
+ 1576 00d3 02       		.uleb128 0x2
+ 1577 00d4 18       		.uleb128 0x18
+ 1578 00d5 00       		.byte	0
+ 1579 00d6 00       		.byte	0
+ 1580 00d7 10       		.uleb128 0x10
+ 1581 00d8 34       		.uleb128 0x34
+ 1582 00d9 00       		.byte	0
+ 1583 00da 03       		.uleb128 0x3
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 42
+
+
+ 1584 00db 0E       		.uleb128 0xe
+ 1585 00dc 3A       		.uleb128 0x3a
+ 1586 00dd 0B       		.uleb128 0xb
+ 1587 00de 3B       		.uleb128 0x3b
+ 1588 00df 05       		.uleb128 0x5
+ 1589 00e0 49       		.uleb128 0x49
+ 1590 00e1 13       		.uleb128 0x13
+ 1591 00e2 02       		.uleb128 0x2
+ 1592 00e3 18       		.uleb128 0x18
+ 1593 00e4 00       		.byte	0
+ 1594 00e5 00       		.byte	0
+ 1595 00e6 11       		.uleb128 0x11
+ 1596 00e7 2E       		.uleb128 0x2e
+ 1597 00e8 01       		.byte	0x1
+ 1598 00e9 3F       		.uleb128 0x3f
+ 1599 00ea 19       		.uleb128 0x19
+ 1600 00eb 03       		.uleb128 0x3
+ 1601 00ec 08       		.uleb128 0x8
+ 1602 00ed 3A       		.uleb128 0x3a
+ 1603 00ee 0B       		.uleb128 0xb
+ 1604 00ef 3B       		.uleb128 0x3b
+ 1605 00f0 0B       		.uleb128 0xb
+ 1606 00f1 27       		.uleb128 0x27
+ 1607 00f2 19       		.uleb128 0x19
+ 1608 00f3 49       		.uleb128 0x49
+ 1609 00f4 13       		.uleb128 0x13
+ 1610 00f5 11       		.uleb128 0x11
+ 1611 00f6 01       		.uleb128 0x1
+ 1612 00f7 12       		.uleb128 0x12
+ 1613 00f8 06       		.uleb128 0x6
+ 1614 00f9 40       		.uleb128 0x40
+ 1615 00fa 18       		.uleb128 0x18
+ 1616 00fb 9642     		.uleb128 0x2116
+ 1617 00fd 19       		.uleb128 0x19
+ 1618 00fe 01       		.uleb128 0x1
+ 1619 00ff 13       		.uleb128 0x13
+ 1620 0100 00       		.byte	0
+ 1621 0101 00       		.byte	0
+ 1622 0102 12       		.uleb128 0x12
+ 1623 0103 34       		.uleb128 0x34
+ 1624 0104 00       		.byte	0
+ 1625 0105 03       		.uleb128 0x3
+ 1626 0106 08       		.uleb128 0x8
+ 1627 0107 3A       		.uleb128 0x3a
+ 1628 0108 0B       		.uleb128 0xb
+ 1629 0109 3B       		.uleb128 0x3b
+ 1630 010a 0B       		.uleb128 0xb
+ 1631 010b 49       		.uleb128 0x49
+ 1632 010c 13       		.uleb128 0x13
+ 1633 010d 02       		.uleb128 0x2
+ 1634 010e 18       		.uleb128 0x18
+ 1635 010f 00       		.byte	0
+ 1636 0110 00       		.byte	0
+ 1637 0111 13       		.uleb128 0x13
+ 1638 0112 01       		.uleb128 0x1
+ 1639 0113 01       		.byte	0x1
+ 1640 0114 49       		.uleb128 0x49
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 43
+
+
+ 1641 0115 13       		.uleb128 0x13
+ 1642 0116 01       		.uleb128 0x1
+ 1643 0117 13       		.uleb128 0x13
+ 1644 0118 00       		.byte	0
+ 1645 0119 00       		.byte	0
+ 1646 011a 14       		.uleb128 0x14
+ 1647 011b 21       		.uleb128 0x21
+ 1648 011c 00       		.byte	0
+ 1649 011d 49       		.uleb128 0x49
+ 1650 011e 13       		.uleb128 0x13
+ 1651 011f 2F       		.uleb128 0x2f
+ 1652 0120 0B       		.uleb128 0xb
+ 1653 0121 00       		.byte	0
+ 1654 0122 00       		.byte	0
+ 1655 0123 15       		.uleb128 0x15
+ 1656 0124 05       		.uleb128 0x5
+ 1657 0125 00       		.byte	0
+ 1658 0126 03       		.uleb128 0x3
+ 1659 0127 08       		.uleb128 0x8
+ 1660 0128 3A       		.uleb128 0x3a
+ 1661 0129 0B       		.uleb128 0xb
+ 1662 012a 3B       		.uleb128 0x3b
+ 1663 012b 0B       		.uleb128 0xb
+ 1664 012c 49       		.uleb128 0x49
+ 1665 012d 13       		.uleb128 0x13
+ 1666 012e 02       		.uleb128 0x2
+ 1667 012f 18       		.uleb128 0x18
+ 1668 0130 00       		.byte	0
+ 1669 0131 00       		.byte	0
+ 1670 0132 16       		.uleb128 0x16
+ 1671 0133 21       		.uleb128 0x21
+ 1672 0134 00       		.byte	0
+ 1673 0135 49       		.uleb128 0x49
+ 1674 0136 13       		.uleb128 0x13
+ 1675 0137 2F       		.uleb128 0x2f
+ 1676 0138 18       		.uleb128 0x18
+ 1677 0139 00       		.byte	0
+ 1678 013a 00       		.byte	0
+ 1679 013b 17       		.uleb128 0x17
+ 1680 013c 2E       		.uleb128 0x2e
+ 1681 013d 01       		.byte	0x1
+ 1682 013e 3F       		.uleb128 0x3f
+ 1683 013f 19       		.uleb128 0x19
+ 1684 0140 03       		.uleb128 0x3
+ 1685 0141 08       		.uleb128 0x8
+ 1686 0142 3A       		.uleb128 0x3a
+ 1687 0143 0B       		.uleb128 0xb
+ 1688 0144 3B       		.uleb128 0x3b
+ 1689 0145 0B       		.uleb128 0xb
+ 1690 0146 27       		.uleb128 0x27
+ 1691 0147 19       		.uleb128 0x19
+ 1692 0148 49       		.uleb128 0x49
+ 1693 0149 13       		.uleb128 0x13
+ 1694 014a 11       		.uleb128 0x11
+ 1695 014b 01       		.uleb128 0x1
+ 1696 014c 12       		.uleb128 0x12
+ 1697 014d 06       		.uleb128 0x6
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 44
+
+
+ 1698 014e 40       		.uleb128 0x40
+ 1699 014f 18       		.uleb128 0x18
+ 1700 0150 9742     		.uleb128 0x2117
+ 1701 0152 19       		.uleb128 0x19
+ 1702 0153 01       		.uleb128 0x1
+ 1703 0154 13       		.uleb128 0x13
+ 1704 0155 00       		.byte	0
+ 1705 0156 00       		.byte	0
+ 1706 0157 18       		.uleb128 0x18
+ 1707 0158 2E       		.uleb128 0x2e
+ 1708 0159 01       		.byte	0x1
+ 1709 015a 3F       		.uleb128 0x3f
+ 1710 015b 19       		.uleb128 0x19
+ 1711 015c 03       		.uleb128 0x3
+ 1712 015d 08       		.uleb128 0x8
+ 1713 015e 3A       		.uleb128 0x3a
+ 1714 015f 0B       		.uleb128 0xb
+ 1715 0160 3B       		.uleb128 0x3b
+ 1716 0161 0B       		.uleb128 0xb
+ 1717 0162 27       		.uleb128 0x27
+ 1718 0163 19       		.uleb128 0x19
+ 1719 0164 11       		.uleb128 0x11
+ 1720 0165 01       		.uleb128 0x1
+ 1721 0166 12       		.uleb128 0x12
+ 1722 0167 06       		.uleb128 0x6
+ 1723 0168 40       		.uleb128 0x40
+ 1724 0169 18       		.uleb128 0x18
+ 1725 016a 9642     		.uleb128 0x2116
+ 1726 016c 19       		.uleb128 0x19
+ 1727 016d 01       		.uleb128 0x1
+ 1728 016e 13       		.uleb128 0x13
+ 1729 016f 00       		.byte	0
+ 1730 0170 00       		.byte	0
+ 1731 0171 19       		.uleb128 0x19
+ 1732 0172 21       		.uleb128 0x21
+ 1733 0173 00       		.byte	0
+ 1734 0174 00       		.byte	0
+ 1735 0175 00       		.byte	0
+ 1736 0176 1A       		.uleb128 0x1a
+ 1737 0177 34       		.uleb128 0x34
+ 1738 0178 00       		.byte	0
+ 1739 0179 03       		.uleb128 0x3
+ 1740 017a 08       		.uleb128 0x8
+ 1741 017b 3A       		.uleb128 0x3a
+ 1742 017c 0B       		.uleb128 0xb
+ 1743 017d 3B       		.uleb128 0x3b
+ 1744 017e 0B       		.uleb128 0xb
+ 1745 017f 49       		.uleb128 0x49
+ 1746 0180 13       		.uleb128 0x13
+ 1747 0181 3F       		.uleb128 0x3f
+ 1748 0182 19       		.uleb128 0x19
+ 1749 0183 3C       		.uleb128 0x3c
+ 1750 0184 19       		.uleb128 0x19
+ 1751 0185 00       		.byte	0
+ 1752 0186 00       		.byte	0
+ 1753 0187 00       		.byte	0
+ 1754              		.section	.debug_aranges,"dr"
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 45
+
+
+ 1755 0000 1C000000 		.long	0x1c
+ 1756 0004 0200     		.word	0x2
+ 1757 0006 00000000 		.secrel32	Ldebug_info0
+ 1758 000a 04       		.byte	0x4
+ 1759 000b 00       		.byte	0
+ 1760 000c 0000     		.word	0
+ 1761 000e 0000     		.word	0
+ 1762 0010 00000000 		.long	Ltext0
+ 1763 0014 79060000 		.long	Letext0-Ltext0
+ 1764 0018 00000000 		.long	0
+ 1765 001c 00000000 		.long	0
+ 1766              		.section	.debug_line,"dr"
+ 1767              	Ldebug_line0:
+ 1768 0000 F3010000 		.section	.debug_str,"dr"
+ 1768      0200C400 
+ 1768      00000101 
+ 1768      FB0E0D00 
+ 1768      01010101 
+ 1769              	LASF0:
+ 1770 0000 5F5F7265 		.ascii "__retval\0"
+ 1770      7476616C 
+ 1770      00
+ 1771              	LASF2:
+ 1772 0009 5F5F666F 		.ascii "__format\0"
+ 1772      726D6174 
+ 1772      00
+ 1773              	LASF1:
+ 1774 0012 5F5F6C6F 		.ascii "__local_argv\0"
+ 1774      63616C5F 
+ 1774      61726776 
+ 1774      00
+ 1775              		.ident	"GCC: (tdm-1) 4.9.2"
+GAS LISTING C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s 			page 46
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s:6      .text:00000000 _printf
+C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s:42     .text:00000029 _sprintf
+C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s:103    .text:00000059 _main
+C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s:277    .text:0000028d _Vernam
+C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s:535    .text:00000528 _reverseTimeValue
+C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s:608    .text:00000599 _sprintfkeys
+C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s:638    .text:000005bb _printBinary
+C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s:679    .text:000005ed _printCharAsBinary
+C:\Users\aptsi\AppData\Local\Temp\ccf589qp.s:723    .text:00000638 _printStringAsBinary
+
+UNDEFINED SYMBOLS
+___main
+__imp___iob
+___chkstk_ms
+___mingw_vprintf
+___mingw_vsprintf
+_time
+_reverseTimeValueA
+_fgets
+_strlen
+_GaloisLFSRinC
+_exit
+_galoislfsrina
+_strtol

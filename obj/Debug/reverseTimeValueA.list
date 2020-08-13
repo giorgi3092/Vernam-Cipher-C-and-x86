@@ -1,0 +1,46 @@
+GAS LISTING D:\SDSU\OneDrive - San Diego State University (SDSU.EDU)\Semesters\Spring 2018\COMPE 271\new f\Vernam Again\reverseTimeValueA.s 			page 1
+
+
+   1              	.global _reverseTimeValueA
+   2              	
+   3              	_reverseTimeValueA:
+   4 0000 55       	    pushl %ebp
+   5 0001 89E5     	    movl %esp, %ebp
+   6 0003 53       	    pushl %ebx    # save registers
+   7 0004 56       	    pushl %esi
+   8 0005 57       	    pushl %edi
+   9 0006 8B4508   	    movl 8(%ebp), %eax # GET num
+  10 0009 31FF     	    xorl %edi, %edi    # reverseNum = 0
+  11 000b 83F800   	    cmpl $0, %eax      # compare num : 0
+  12 000e 7E1B     	    jle end            # exit if num <= 0
+  13              	    loop:
+  14 0010 BE0A0000 	        movl $10, %esi    # 10
+  14      00
+  15 0015 0FAFF7   	        imull %edi, %esi  # reverseNum*10
+  16 0018 BB0A0000 	        movl $10, %ebx    # 10
+  16      00
+  17 001d C1FA1F   	        sarl $31, %edx
+  18 0020 F7FB     	        idivl %ebx        # num%10
+  19 0022 01F2     	        addl %esi, %edx   # reverseNum*10 + num%10
+  20 0024 89D7     	        movl %edx, %edi   # reverseNum = reverseNum*10 + num%10
+  21              	        # num = num/10 is implied (in %eax)
+  22 0026 83F800   	        cmpl $0, %eax     # compare num : 0
+  23 0029 7FE5     	        jg loop           # jump if num > 0
+  24              	    end:
+  25 002b 89F8     	    movl %edi, %eax
+  26 002d 5B       	    popl %ebx    # restore registers
+  27 002e 5E       	    popl %esi
+  28 002f 5F       	    popl %edi
+  29 0030 89EC     	    movl %ebp, %esp
+  30 0032 5D       	    popl %ebp
+  31 0033 C3       	    ret
+GAS LISTING D:\SDSU\OneDrive - San Diego State University (SDSU.EDU)\Semesters\Spring 2018\COMPE 271\new f\Vernam Again\reverseTimeValueA.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 fake
+D:\SDSU\OneDrive - San Diego State University (SDSU.EDU)\Semesters\Spring 2018\COMPE 271\new f\Vernam Again\reverseTimeValueA.s:3      .text:00000000 _reverseTimeValueA
+D:\SDSU\OneDrive - San Diego State University (SDSU.EDU)\Semesters\Spring 2018\COMPE 271\new f\Vernam Again\reverseTimeValueA.s:24     .text:0000002b end
+D:\SDSU\OneDrive - San Diego State University (SDSU.EDU)\Semesters\Spring 2018\COMPE 271\new f\Vernam Again\reverseTimeValueA.s:13     .text:00000010 loop
+
+NO UNDEFINED SYMBOLS

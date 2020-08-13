@@ -1,0 +1,58 @@
+GAS LISTING D:\SDSU\OneDrive - San Diego State University (SDSU.EDU)\Semesters\Spring 2018\COMPE 271\new f\Vernam Again\galoislfsrina.s 			page 1
+
+
+   1              	.global _galoislfsrina
+   2              	.extern sprintfkeys
+   3              	
+   4              	_galoislfsrina:
+   5 0000 55       	    pushl %ebp
+   6 0001 89E5     	    movl %esp, %ebp
+   7 0003 8B5D08   	    movl 8(%ebp), %ebx   # GET seedIN
+   8 0006 89DE     	    movl %ebx, %esi      # make a copy of seedIN
+   9 0008 8B4D0C   	    movl 12(%ebp), %ecx  # GET charCount
+  10 000b 8B5510   	    movl 16(%ebp), %edx  # GET &key[0]
+  11 000e BF000000 	    movl $0, %edi
+  11      00
+  12              	    loop:
+  13 0013 83E301   	        andl $1, %ebx  # generate LSB (output)
+  14 0016 D1EE     	        shrl $1, %esi  # apply shift (LFSR_STATE)
+  15 0018 83FB00   	        cmpl $0, %ebx  # compare LSB : 0
+  16 001b 7E06     	        jle noMask     # jump if LSB is 1
+  17 001d 81F60000 	        xorl $0xA3000000, %esi # apply taps
+  17      00A3
+  18              	        noMask:
+  19 0023 47       	        incl %edi          # period++
+  20 0024 51       	        pushl %ecx
+  21 0025 56       	        pushl %esi         # pass LFSR_STATE as arg2
+  22 0026 52       	        pushl %edx         # pass keyPtr as arg1
+  23 0027 E8000000 	        call _sprintfkeys   # sprintfkeys(keyPtr, LFSR_STATE)
+  23      00
+  24 002c 5A       	        popl %edx          # clean up the stack
+  25 002d 5E       	        popl %esi          # ...
+  26 002e 59       	        popl %ecx
+  27 002f 01C2     	        addl %eax, %edx # keyPtr += sprintfKeys(keyPtr, LFSR_STATE)
+  28 0031 89FB     	        movl %edi, %ebx # ...
+  29 0033 C1E302   	        shll $2, %ebx   # 4*period
+  30 0036 39CB     	        cmpl %ecx, %ebx # compare 4*period : charCount
+  31 0038 7D07     	        jge end         # break if 4*period >= charCount
+  32 003a 89F3     	        movl %esi, %ebx # restore LFSR_STATE
+  33 003c 397510   	        cmpl %esi, 16(%ebp) # compare startingState : LFSR_STATE
+  34 003f 75D2     	        jne loop
+  35              	    end:
+  36 0041 B8010000 	    movl $1, %eax # return 1
+  36      00
+  37 0046 89EC     	    movl %ebp, %esp
+  38 0048 5D       	    popl %ebp
+  39 0049 C39090   	    ret
+GAS LISTING D:\SDSU\OneDrive - San Diego State University (SDSU.EDU)\Semesters\Spring 2018\COMPE 271\new f\Vernam Again\galoislfsrina.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 fake
+D:\SDSU\OneDrive - San Diego State University (SDSU.EDU)\Semesters\Spring 2018\COMPE 271\new f\Vernam Again\galoislfsrina.s:4      .text:00000000 _galoislfsrina
+D:\SDSU\OneDrive - San Diego State University (SDSU.EDU)\Semesters\Spring 2018\COMPE 271\new f\Vernam Again\galoislfsrina.s:12     .text:00000013 loop
+D:\SDSU\OneDrive - San Diego State University (SDSU.EDU)\Semesters\Spring 2018\COMPE 271\new f\Vernam Again\galoislfsrina.s:18     .text:00000023 noMask
+D:\SDSU\OneDrive - San Diego State University (SDSU.EDU)\Semesters\Spring 2018\COMPE 271\new f\Vernam Again\galoislfsrina.s:35     .text:00000041 end
+
+UNDEFINED SYMBOLS
+_sprintfkeys

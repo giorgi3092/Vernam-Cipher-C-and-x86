@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1525507841 source:d:\sdsu\onedrive - san diego state university (sdsu.edu)\semesters\spring 2018\compe 271\new f\vernam again\galoislfsrina.s
+
+1525508300 source:d:\sdsu\onedrive - san diego state university (sdsu.edu)\semesters\spring 2018\compe 271\new f\vernam again\galoislfsrinc.c
+	<stdint.h>
+	<stdio.h>
+
+1525594247 source:d:\sdsu\onedrive - san diego state university (sdsu.edu)\semesters\spring 2018\compe 271\new f\vernam again\main.c
+	<stdint.h>
+	<stdio.h>
+	<string.h>
+	<time.h>
+	<stdlib.h>
+
+1525523126 source:d:\sdsu\onedrive - san diego state university (sdsu.edu)\semesters\spring 2018\compe 271\new f\vernam again\reversetimevaluea.s
+
+1525507841 source:e:\onedrive - san diego state university (sdsu.edu)\semesters\spring 2018\compe 271\new f\vernam again\galoislfsrina.s
+
+1525508300 source:e:\onedrive - san diego state university (sdsu.edu)\semesters\spring 2018\compe 271\new f\vernam again\galoislfsrinc.c
+	<stdint.h>
+	<stdio.h>
+
+1525594247 source:e:\onedrive - san diego state university (sdsu.edu)\semesters\spring 2018\compe 271\new f\vernam again\main.c
+	<stdint.h>
+	<stdio.h>
+	<string.h>
+	<time.h>
+	<stdlib.h>
+
+1525523126 source:e:\onedrive - san diego state university (sdsu.edu)\semesters\spring 2018\compe 271\new f\vernam again\reversetimevaluea.s
+
